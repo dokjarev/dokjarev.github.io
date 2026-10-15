@@ -3,61 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jarev's personal website and language-learning journal.">
-  <title>Jarev | Personal Website</title>
+  <meta name="description" content="Jarev's personal website and language learning timeline.">
+  <title>Jarev | Language Learning Timeline</title>
   <style>
-    :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b3040; background: #f5f8fa; }
+    :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f5f8fa; color: #1b3040; }
     * { box-sizing: border-box; }
-    body { margin: 0; line-height: 1.65; }
-    header, main, footer { max-width: 840px; margin: auto; padding-left: 24px; padding-right: 24px; }
-    header { padding-top: 28px; padding-bottom: 16px; }
-    .brand { font-weight: 800; font-size: 1.3rem; letter-spacing: .07em; color: #087d80; text-decoration: none; }
-    nav { margin-top: 12px; }
-    nav a { color: #345668; margin-right: 20px; text-underline-offset: 4px; }
-    main { padding-top: 26px; padding-bottom: 54px; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; }
-    h2 { font-size: 1.6rem; line-height: 1.3; }
-    .intro { margin-bottom: 36px; }
-    .panel { background: #fff; border: 1px solid #dce6eb; border-radius: 16px; padding: clamp(20px, 4vw, 36px); }
-    .eyebrow { color: #087d80; font-weight: 750; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
-    .focus { display: inline-block; background: #dff2ee; color: #065b5f; border-radius: 99px; padding: 6px 14px; font-weight: 700; }
-    .languages { display: flex; flex-wrap: wrap; list-style: none; padding: 0; gap: 8px; }
-    .languages li { background: #eef3f6; padding: 6px 12px; border-radius: 99px; }
-    .muted { color: #617381; font-size: .93rem; }
-    li { margin-bottom: 8px; }
-    footer { border-top: 1px solid #dce6eb; padding-top: 18px; padding-bottom: 26px; color: #617381; font-size: .9rem; }
+    body { margin: 0; line-height: 1.6; }
+    header, main, footer { max-width: 860px; margin: auto; padding-left: 24px; padding-right: 24px; }
+    header { padding-top: 26px; padding-bottom: 14px; }
+    .brand { color: #087d80; font-weight: 800; letter-spacing: .08em; text-decoration: none; font-size: 1.25rem; }
+    nav { margin-top: 10px; }
+    nav a { color: #345668; margin-right: 18px; text-underline-offset: 4px; }
+    main { padding-top: 26px; padding-bottom: 56px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    h2 { margin: 0 0 9px; font-size: 1.75rem; }
+    .intro { margin-bottom: 38px; }
+    .panel { padding: clamp(20px, 4vw, 38px); border-radius: 18px; border: 1px solid #dce6eb; background: white; }
+    .eyebrow { text-transform: uppercase; color: #087d80; letter-spacing: .1em; font-size: .79rem; font-weight: 800; margin: 0 0 8px; }
+    .muted { color: #647986; font-size: .95rem; }
+    .timeline { list-style: none; padding: 0 0 0 22px; margin: 28px 0 0; border-left: 2px solid #d5e3e8; }
+    .entry { position: relative; margin: 0 0 16px 0; padding: 16px 18px; border: 1px solid #e0e8ed; border-radius: 12px; background: #fbfcfd; }
+    .entry::before { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #90a5af; border: 3px solid white; box-shadow: 0 0 0 2px #d5e3e8; left: -32px; top: 22px; }
+    .entry.current { border-color: #0c888c; background: #f0faf9; }
+    .entry.current::before { background: #087d80; box-shadow: 0 0 0 2px #087d80; }
+    .entry.completed::before { background: #318064; }
+    .entry.planned::before { background: #c48a31; }
+    .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+    .week { font-size: .82rem; color: #627684; font-weight: 650; }
+    .language { font-size: 1.2rem; margin: 2px 0; font-weight: 750; }
+    .date { color: #526978; font-size: .92rem; }
+    .status { border-radius: 99px; padding: 4px 10px; font-size: .77rem; font-weight: 750; background: #e9eef1; color: #516676; white-space: nowrap; }
+    .completed .status { color: #226848; background: #e0f2e7; }
+    .current .status { color: #075f61; background: #d8f1ee; }
+    .planned .status { color: #875814; background: #fff0d8; }
+    .entry p { margin: 8px 0 0; }
+    footer { border-top: 1px solid #dce6eb; padding-top: 18px; padding-bottom: 28px; color: #647986; font-size: .9rem; }
   </style>
 </head>
 <body>
   <header>
     <a class="brand" href="#top">JAREV</a>
-    <nav aria-label="Main navigation">
-      <a href="#top">Home</a>
-      <a href="#language-learning">Language learning</a>
-    </nav>
+    <nav aria-label="Main navigation"><a href="#top">Home</a><a href="#language-log">Language log</a></nav>
   </header>
   <main id="top">
     <section class="intro">
       <h1>Hello, I am Jarev.</h1>
       <p>Here I share content that I find interesting. Feel free to browse and come back any time.</p>
     </section>
-    <section class="panel" id="language-learning">
+    <section class="panel" id="language-log" aria-labelledby="log-heading">
       <p class="eyebrow">Personal learning journal</p>
-      <h2>My language-learning strategy</h2>
-      <p>I practise seven languages using flexible, language-focused weeks. I usually concentrate on one language at a time, but the order is not fixed: I choose based on my circumstances, opportunities to use the language, and which languages need more attention. During each week, I try to read, listen, and answer questions in that language.</p>
-      <h3>Languages in my rotation</h3>
-      <ul class="languages">
-        <li>French</li><li>Dutch</li><li>German</li><li>Spanish</li><li>English</li><li>Chinese</li><li>Italian</li>
-      </ul>
-      <p><span class="focus">Current focus (October 2026): English</span></p>
-      <p class="muted">I began with Italian, followed by French and English. Because I am currently in the United States, I plan to continue English for a second week. German is the likely next focus, but this is a flexible plan rather than a fixed calendar. After this extra English week, I intend to give the other languages their turns before returning to English.</p>
-      <h3>My weekly approach</h3>
-      <ol>
-        <li><strong>Read:</strong> deliberately choose reading material in the week's focus language.</li>
-        <li><strong>Listen:</strong> watch or listen to content in that language.</li>
-        <li><strong>Retrieve and respond:</strong> use NotebookLM to generate questions from material I am interested in learning, and answer them in the focus language.</li>
+      <h2 id="log-heading">Language rotation timeline</h2>
+      <p class="muted">A flexible record of my language-focused weeks. Dates begin from an approximate start of 27 September 2026; future plans may change.</p>
+      <ol class="timeline">
+        <li class="entry completed">
+          <div class="entry-header"><div><div class="week">Week 1</div><div class="language">Italian</div><div class="date"><time datetime="2026-09-27">27 Sep</time> – <time datetime="2026-10-03">3 Oct 2026</time></div></div><span class="status">Completed</span></div>
+        </li>
+        <li class="entry completed">
+          <div class="entry-header"><div><div class="week">Week 2</div><div class="language">French</div><div class="date"><time datetime="2026-10-04">4 Oct</time> – <time datetime="2026-10-10">10 Oct 2026</time></div></div><span class="status">Completed</span></div>
+        </li>
+        <li class="entry current">
+          <div class="entry-header"><div><div class="week">Week 3</div><div class="language">English</div><div class="date"><time datetime="2026-10-11">11 Oct</time> – <time datetime="2026-10-17">17 Oct 2026</time></div></div><span class="status">Current</span></div>
+        </li>
+        <li class="entry planned">
+          <div class="entry-header"><div><div class="week">Week 4</div><div class="language">English</div><div class="date"><time datetime="2026-10-18">18 Oct</time> – <time datetime="2026-10-24">24 Oct 2026</time></div></div><span class="status">Planned</span></div>
+          <p class="muted">An extra English week while in the United States.</p>
+        </li>
+        <li class="entry planned">
+          <div class="entry-header"><div><div class="week">Week 5</div><div class="language">German</div><div class="date"><time datetime="2026-10-25">25 Oct</time> – <time datetime="2026-10-31">31 Oct 2026</time></div></div><span class="status">Tentative</span></div>
+        </li>
+        <li class="entry">
+          <div class="entry-header"><div><div class="week">Week 6</div><div class="language">To be determined</div><div class="date"><time datetime="2026-11-01">1 Nov</time> – <time datetime="2026-11-07">7 Nov 2026</time></div></div><span class="status">TBD</span></div>
+        </li>
+        <li class="entry">
+          <div class="entry-header"><div><div class="week">Week 7</div><div class="language">To be determined</div><div class="date"><time datetime="2026-11-08">8 Nov</time> – <time datetime="2026-11-14">14 Nov 2026</time></div></div><span class="status">TBD</span></div>
+        </li>
+        <li class="entry">
+          <div class="entry-header"><div><div class="week">Week 8</div><div class="language">To be determined</div><div class="date"><time datetime="2026-11-15">15 Nov</time> – <time datetime="2026-11-21">21 Nov 2026</time></div></div><span class="status">TBD</span></div>
+        </li>
       </ol>
-      <p>The goal is to combine language immersion with active recall, using subjects I genuinely want to understand. This page documents my current approach, which I may adjust as I learn. The focus language is updated manually rather than calculated from a fixed weekly sequence.</p>
+      <p class="muted">Languages in the rotation: French · Dutch · German · Spanish · English · Chinese · Italian. Future weeks are selected flexibly, not by a fixed repeating sequence.</p>
     </section>
   </main>
   <footer>Jarev · Personal website</footer>
