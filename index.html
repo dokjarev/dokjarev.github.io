@@ -21,8 +21,14 @@
     .panel { padding: clamp(20px, 4vw, 38px); border-radius: 18px; border: 1px solid #dce6eb; background: white; }
     .eyebrow { text-transform: uppercase; color: #087d80; letter-spacing: .1em; font-size: .79rem; font-weight: 800; margin: 0 0 8px; }
     .muted { color: #647986; font-size: .95rem; }
-    .timeline { list-style: none; padding: 0 0 0 22px; margin: 28px 0 0; border-left: 2px solid #d5e3e8; }
-    .entry { position: relative; margin: 0 0 16px 0; padding: 16px 18px; border: 1px solid #e0e8ed; border-radius: 12px; background: #fbfcfd; }
+    .timeline-tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .timeline-tools input, .timeline-tools select { min-height: 42px; border: 1px solid #c8d8df; border-radius: 9px; background: white; padding: 8px 11px; font: inherit; color: inherit; }
+    .timeline-tools input { flex: 1 1 185px; min-width: 0; }
+    .timeline-tools select { flex: 1 1 165px; }
+    .timeline-viewport { max-height: 325px; overflow-y: auto; overscroll-behavior: contain; margin-top: 18px; padding-right: 10px; scrollbar-gutter: stable; }
+    .timeline-hint { font-size: .84rem; margin: 8px 0 0; }
+    .timeline { list-style: none; padding: 0 0 0 22px; margin: 0; border-left: 2px solid #d5e3e8; }
+    .entry { position: relative; margin: 0 0 9px 0; padding: 10px 13px; border: 1px solid #e0e8ed; border-radius: 12px; background: #fbfcfd; }
     .entry::before { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #90a5af; border: 3px solid white; box-shadow: 0 0 0 2px #d5e3e8; left: -32px; top: 22px; }
     .entry.current { border-color: #0c888c; background: #f0faf9; }
     .entry.current::before { background: #087d80; box-shadow: 0 0 0 2px #087d80; }
@@ -37,6 +43,11 @@
     .current .status { color: #075f61; background: #d8f1ee; }
     .planned .status { color: #875814; background: #fff0d8; }
     .entry p { margin: 8px 0 0; }
+    .entry details { margin-top: 4px; color: #526978; font-size: .88rem; }
+    .entry summary { cursor: pointer; }
+    .entry[hidden] { display: none; }
+    #no-results { margin: 14px 0; color: #617381; }
+    @media (max-width: 520px) { .timeline-viewport { max-height: 300px; } .language { font-size: 1.05rem; } .date { font-size: .82rem; } }
     footer { border-top: 1px solid #dce6eb; padding-top: 18px; padding-bottom: 28px; color: #647986; font-size: .9rem; }
   </style>
 </head>
@@ -54,6 +65,18 @@
       <p class="eyebrow">Personal learning journal</p>
       <h2 id="log-heading">Language rotation timeline</h2>
       <p class="muted">A flexible record of my language-focused weeks. Dates begin from an approximate start of 27 September 2026; future plans may change.</p>
+      <div class="timeline-tools">
+        <input id="language-search" type="search" placeholder="Search languages or dates…" aria-label="Search timeline">
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="completed">Completed</option>
+          <option value="current">Current</option>
+          <option value="planned">Planned / tentative</option>
+          <option value="tbd">To be determined</option>
+        </select>
+      </div>
+      <p class="muted timeline-hint">Scroll to explore the weeks. Select a note to expand it.</p>
+      <div class="timeline-viewport" aria-label="Scrollable language rotation timeline" tabindex="0">
       <ol class="timeline">
         <li class="entry completed">
           <div class="entry-header"><div><div class="week">Week 1</div><div class="language">Italian</div><div class="date"><time datetime="2026-09-27">27 Sep</time> – <time datetime="2026-10-03">3 Oct 2026</time></div></div><span class="status">Completed</span></div>
@@ -66,7 +89,7 @@
         </li>
         <li class="entry planned">
           <div class="entry-header"><div><div class="week">Week 4</div><div class="language">English</div><div class="date"><time datetime="2026-10-18">18 Oct</time> – <time datetime="2026-10-24">24 Oct 2026</time></div></div><span class="status">Planned</span></div>
-          <p class="muted">An extra English week while in the United States.</p>
+          <details><summary>Week note</summary><p>An extra English week while in the United States.</p></details>
         </li>
         <li class="entry planned">
           <div class="entry-header"><div><div class="week">Week 5</div><div class="language">German</div><div class="date"><time datetime="2026-10-25">25 Oct</time> – <time datetime="2026-10-31">31 Oct 2026</time></div></div><span class="status">Tentative</span></div>
@@ -81,9 +104,32 @@
           <div class="entry-header"><div><div class="week">Week 8</div><div class="language">To be determined</div><div class="date"><time datetime="2026-11-15">15 Nov</time> – <time datetime="2026-11-21">21 Nov 2026</time></div></div><span class="status">TBD</span></div>
         </li>
       </ol>
+      <p id="no-results" hidden>No matching weeks found.</p>
+      </div>
       <p class="muted">Languages in the rotation: French · Dutch · German · Spanish · English · Chinese · Italian. Future weeks are selected flexibly, not by a fixed repeating sequence.</p>
     </section>
   </main>
   <footer>Jarev · Personal website</footer>
+  <script>
+    const search = document.getElementById('language-search');
+    const filter = document.getElementById('status-filter');
+    const entries = Array.from(document.querySelectorAll('.timeline .entry'));
+    const empty = document.getElementById('no-results');
+    function applyFilters() {
+      const term = search.value.trim().toLocaleLowerCase();
+      let visible = 0;
+      for (const entry of entries) {
+        const status = entry.classList.contains('completed') ? 'completed'
+          : entry.classList.contains('current') ? 'current'
+          : entry.querySelector('.status').textContent.trim() === 'TBD' ? 'tbd' : 'planned';
+        const matches = (filter.value === 'all' || status === filter.value) && entry.textContent.toLocaleLowerCase().includes(term);
+        entry.hidden = !matches;
+        if (matches) visible++;
+      }
+      empty.hidden = visible !== 0;
+    }
+    search.addEventListener('input', applyFilters);
+    filter.addEventListener('change', applyFilters);
+  </script>
 </body>
 </html>
