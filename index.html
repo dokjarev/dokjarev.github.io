@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jarev's personal website and language learning timeline.">
-  <title>Jarev | Language Learning Timeline</title>
+  <meta name="description" content="Jarev’s personal website: learning, research, and an initiative for equitable anesthetic care in Colombia.">
+  <title>Jarev | Learning &amp; Anesthetic Care</title>
   <style>
     :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f5f8fa; color: #1b3040; }
     * { box-sizing: border-box; }
@@ -19,6 +19,13 @@
     h2 { margin: 0 0 9px; font-size: 1.75rem; }
     .intro { margin-bottom: 38px; }
     .panel { padding: clamp(20px, 4vw, 38px); border-radius: 18px; border: 1px solid #dce6eb; background: white; }
+    .panel + .panel { margin-top: 32px; }
+    .initiative-principle { margin: 20px 0; padding: 14px 18px; border-left: 3px solid #087d80; background: #f0faf9; font-size: 1.1rem; font-weight: 650; }
+    .initiative-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 16px; margin: 22px 0; }
+    .initiative-grid article { border-top: 2px solid #d5e3e8; padding-top: 12px; }
+    .initiative-grid h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .initiative-grid p { margin: 0; }
+    .initiative-details summary { cursor: pointer; color: #087d80; font-weight: 650; }
     .eyebrow { text-transform: uppercase; color: #087d80; letter-spacing: .1em; font-size: .79rem; font-weight: 800; margin: 0 0 8px; }
     .muted { color: #647986; font-size: .95rem; }
     .timeline-tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
@@ -57,7 +64,7 @@
 <body>
   <header>
     <a class="brand" href="#top">JAREV</a>
-    <nav aria-label="Main navigation"><a href="#top">Home</a><a href="#language-log">Language log</a></nav>
+    <nav aria-label="Main navigation"><a href="#top">Home</a><a href="#language-log">Language log</a><a href="#colombia">Anesthetic care in Colombia</a></nav>
   </header>
   <main id="top">
     <section class="intro">
@@ -118,6 +125,35 @@
       <p id="no-results" hidden>No matching weeks found.</p>
       </div>
       <p class="muted">Languages in the rotation: French · Dutch · German · Spanish · English · Chinese · Italian. Future weeks are selected flexibly, not by a fixed repeating sequence.</p>
+    </section>
+
+    <section class="panel" id="colombia" aria-labelledby="colombia-heading">
+      <p class="eyebrow">An initiative in development</p>
+      <h2 id="colombia-heading">Advancing anesthetic care in Colombia</h2>
+      <blockquote class="initiative-principle">Every patient should receive safe, appropriate anesthetic care, wherever they live.</blockquote>
+      <p>I am developing an initiative to help advance equitable anesthetic and perioperative care in Colombia, with particular attention to patients in rural areas and communities outside the major cities.</p>
+      <p>My aim is to build an independent institution that investigates barriers to good care, makes the evidence accessible, and helps translate findings into improvements in practice and public policy. Supporting the professionals who deliver care is an essential part of that work.</p>
+      <div class="initiative-grid">
+        <article>
+          <h3>Investigate</h3>
+          <p>Study geographic inequalities and barriers involving staffing, equipment, referral pathways, working conditions, and access to continuing professional development.</p>
+        </article>
+        <article>
+          <h3>Publish</h3>
+          <p>Share findings through scientific publications, public reports, and policy briefs that make problems and possible solutions understandable.</p>
+        </article>
+        <article>
+          <h3>Advocate and evaluate</h3>
+          <p>Work with patients, regional clinicians, hospitals, professional societies, and authorities to develop recommendations and assess their effect on care.</p>
+        </article>
+      </div>
+      <details class="initiative-details">
+        <summary>Initial focus: continuing professional development</summary>
+        <p>One proposed research priority is how Colombia supports and verifies continued professional competence. Questions include access to relevant education, protected learning time, costs, institutional responsibilities, and the role of continuing education or recertification requirements.</p>
+        <p>The aim is to establish what helps clinicians maintain current, safe practice and improves patient care. Recommendations should be informed by evidence and by the realities of practising outside major academic centres.</p>
+      </details>
+      <p><strong>First steps:</strong> listen to regional clinicians and patient representatives, map existing efforts and requirements, and develop a feasible collaborative study of barriers to safe anesthetic care.</p>
+      <p class="muted">This is an early-stage personal initiative. Its name, governance, partnerships, and first projects remain to be developed, with Colombian leadership and regional participation at the centre.</p>
     </section>
   </main>
   <footer>Jarev · Personal website</footer>
