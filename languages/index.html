@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jarev’s personal language-learning log.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Jarev | Language log</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f5f8fa; color: #1b3040; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.6; }
+    header, main, footer { max-width: 860px; margin: auto; padding-left: 24px; padding-right: 24px; }
+    header { padding-top: 26px; padding-bottom: 14px; }
+    .brand { color: #087d80; font-weight: 800; letter-spacing: .08em; text-decoration: none; font-size: 1.25rem; }
+    nav { margin-top: 10px; }
+    nav a { color: #345668; margin-right: 18px; text-underline-offset: 4px; }
+    main { padding-top: 26px; padding-bottom: 56px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    h2 { margin: 0 0 9px; font-size: 1.75rem; }
+    .intro { margin-bottom: 38px; }
+    .panel { padding: clamp(20px, 4vw, 38px); border-radius: 18px; border: 1px solid #dce6eb; background: white; }
+    .panel + .panel { margin-top: 32px; }
+    .initiative-principle { margin: 20px 0; padding: 14px 18px; border-left: 3px solid #087d80; background: #f0faf9; font-size: 1.1rem; font-weight: 650; }
+    .initiative-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 16px; margin: 22px 0; }
+    .initiative-grid article { border-top: 2px solid #d5e3e8; padding-top: 12px; }
+    .initiative-grid h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .initiative-grid p { margin: 0; }
+    .initiative-details summary { cursor: pointer; color: #087d80; font-weight: 650; }
+    .eyebrow { text-transform: uppercase; color: #087d80; letter-spacing: .1em; font-size: .79rem; font-weight: 800; margin: 0 0 8px; }
+    .muted { color: #647986; font-size: .95rem; }
+    .timeline-tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .timeline-tools input, .timeline-tools select { min-height: 42px; border: 1px solid #c8d8df; border-radius: 9px; background: white; padding: 8px 11px; font: inherit; color: inherit; }
+    .timeline-tools input { flex: 1 1 185px; min-width: 0; }
+    .timeline-tools select { flex: 1 1 165px; }
+    .timeline-viewport { max-height: 325px; overflow-y: auto; overscroll-behavior: contain; margin-top: 18px; padding-right: 10px; scrollbar-gutter: stable; }
+    .timeline-hint { font-size: .84rem; margin: 8px 0 0; }
+    .timeline { list-style: none; padding: 0 0 0 22px; margin: 0; border-left: 2px solid #d5e3e8; }
+    .entry { position: relative; margin: 0 0 9px 0; padding: 10px 13px; border: 1px solid #e0e8ed; border-radius: 12px; background: #fbfcfd; }
+    .entry::before { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #90a5af; border: 3px solid white; box-shadow: 0 0 0 2px #d5e3e8; left: -32px; top: 22px; }
+    .entry.current { border-color: #0c888c; background: #f0faf9; }
+    .entry.current::before { background: #087d80; box-shadow: 0 0 0 2px #087d80; }
+    .entry.completed::before { background: #318064; }
+    .entry.planned::before { background: #c48a31; }
+    .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+    .week { font-size: .82rem; color: #627684; font-weight: 650; }
+    .language { font-size: 1.2rem; margin: 2px 0; font-weight: 750; }
+    .date { color: #526978; font-size: .92rem; }
+    .status { border-radius: 99px; padding: 4px 10px; font-size: .77rem; font-weight: 750; background: #e9eef1; color: #516676; white-space: nowrap; }
+    .completed .status { color: #226848; background: #e0f2e7; }
+    .current .status { color: #075f61; background: #d8f1ee; }
+    .planned .status { color: #875814; background: #fff0d8; }
+    .entry p { margin: 8px 0 0; }
+    .entry details { margin-top: 6px; color: #526978; font-size: .88rem; }
+    .journal-note { padding: 5px 0 3px; }
+    .journal-note p { margin: 10px 0; }
+    .journal-note p:last-child { margin-bottom: 0; }
+    .entry summary { cursor: pointer; }
+    .entry[hidden] { display: none; }
+    #no-results { margin: 14px 0; color: #617381; }
+    @media (max-width: 520px) { .timeline-viewport { max-height: 300px; } .language { font-size: 1.05rem; } .date { font-size: .82rem; } }
+    footer { border-top: 1px solid #dce6eb; padding-top: 18px; padding-bottom: 28px; color: #647986; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="../">JAREV</a>
+    <nav aria-label="Main navigation"><a href="../">Home</a><a href="#top">Language log</a></nav>
+  </header>
+  <main id="top">
+    <section class="panel" id="language-log" aria-labelledby="log-heading">
+      <p class="eyebrow">Personal learning journal</p>
+      <h2 id="log-heading">Language rotation timeline</h2>
+      <p class="muted">A flexible record of my language-focused weeks. Dates begin from an approximate start of 27 September 2026; future plans may change.</p>
+      <div class="timeline-tools">
+        <input id="language-search" type="search" placeholder="Search languages or dates…" aria-label="Search timeline">
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="completed">Completed</option>
+          <option value="current">Current</option>
+          <option value="planned">Planned / tentative</option>
+          <option value="tbd">To be determined</option>
+        </select>
+      </div>
+      <p class="muted timeline-hint">Scroll to explore the weeks. Select a note to expand it.</p>
+      <div class="timeline-viewport" aria-label="Scrollable language rotation timeline" tabindex="0">
+      <ol class="timeline">
+        <li class="entry completed">
+          <div class="entry-header"><div><div class="week">Week 1</div><div class="language">Italian</div><div class="date"><time datetime="2026-09-27">27 Sep</time> – <time datetime="2026-10-03">3 Oct 2026</time></div></div><span class="status">Completed</span></div>
+        </li>
+        <li class="entry completed">
+          <div class="entry-header"><div><div class="week">Week 2</div><div class="language">French</div><div class="date"><time datetime="2026-10-04">4 Oct</time> – <time datetime="2026-10-10">10 Oct 2026</time></div></div><span class="status">Completed</span></div>
+        </li>
+        <li class="entry completed">
+          <div class="entry-header"><div><div class="week">Week 3</div><div class="language">English</div><div class="date"><time datetime="2026-10-11">11 Oct</time> – <time datetime="2026-10-17">17 Oct 2026</time></div></div><span class="status">Completed</span></div>
+          <details>
+            <summary>Reading journal · Getting Things Done (15 Oct)</summary>
+            <div class="journal-note">
+              <p><strong>What I'm reading:</strong> <cite>Getting Things Done</cite> by David Allen (2015 edition).</p>
+              <p>I came across a used copy by chance while passing a bookshop. I was drawn to the possibility of developing a more efficient, less stressful approach to productivity—and to the opportunity to practise reading in English.</p>
+              <p>I'm curious about how well the book's ideas hold up today. The author intended this edition to focus on enduring principles rather than tools tied to the technology of 2015, before today's widely accessible AI chatbots. I want to see how those principles might apply in a world with newer AI tools.</p>
+            </div>
+          </details>
+        </li>
+        <li class="entry current">
+          <div class="entry-header"><div><div class="week">Week 4</div><div class="language">English</div><div class="date"><time datetime="2026-10-18">18 Oct</time> – <time datetime="2026-10-24">24 Oct 2026</time></div></div><span class="status">Current</span></div>
+          <details><summary>Week note</summary><p>An extra English week while in the United States.</p><p><strong>Goal:</strong> finish reading <cite>Getting Things Done</cite>, at reading speed rather than analysing every sentence; save a careful second read for later.</p></details>
+        </li>
+        <li class="entry planned">
+          <div class="entry-header"><div><div class="week">Week 5</div><div class="language">German</div><div class="date"><time datetime="2026-10-25">25 Oct</time> – <time datetime="2026-10-31">31 Oct 2026</time></div></div><span class="status">Planned</span></div>
+          <details><summary>Week goal</summary><p><strong>Noordwijk tour in German:</strong> outline the stops for a six-hour guided tour, write the introduction (who I am) and the first two or three stops, and record one short video.</p></details>
+        </li>
+        <li class="entry planned">
+          <div class="entry-header"><div><div class="week">Week 6</div><div class="language">Dutch</div><div class="date"><time datetime="2026-11-01">1 Nov</time> – <time datetime="2026-11-07">7 Nov 2026</time></div></div><span class="status">Planned</span></div>
+        </li>
+        <li class="entry planned">
+          <div class="entry-header"><div><div class="week">Week 7</div><div class="language">Spanish</div><div class="date"><time datetime="2026-11-08">8 Nov</time> – <time datetime="2026-11-14">14 Nov 2026</time></div></div><span class="status">Planned</span></div>
+        </li>
+        <li class="entry">
+          <div class="entry-header"><div><div class="week">Week 8</div><div class="language">To be determined</div><div class="date"><time datetime="2026-11-15">15 Nov</time> – <time datetime="2026-11-21">21 Nov 2026</time></div></div><span class="status">TBD</span></div>
+        </li>
+      </ol>
+      <p id="no-results" hidden>No matching weeks found.</p>
+      </div>
+      <p class="muted">Languages in the rotation: French · Dutch · German · Spanish · English · Chinese · Italian. Future weeks are selected flexibly, not by a fixed repeating sequence.</p>
+    </section>
+  </main>
+  <footer>Jarev · Personal language log</footer>
+  <script>
+    const search = document.getElementById('language-search');
+    const filter = document.getElementById('status-filter');
+    const entries = Array.from(document.querySelectorAll('.timeline .entry'));
+    const empty = document.getElementById('no-results');
+
+    // Set each week's status from today's date (Europe/Amsterdam), so the timeline moves forward on its own.
+    // Past weeks become "Completed", the week containing today becomes "Current";
+    // future weeks keep the label written in the HTML (Planned, Tentative or TBD).
+    // A past week whose language was never chosen shows "Not recorded" instead of "Completed".
+    function updateStatusesByDate() {
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Amsterdam' }).format(new Date()); // YYYY-MM-DD
+      for (const entry of entries) {
+        const times = entry.querySelectorAll('.date time[datetime]');
+        if (times.length < 2) continue;
+        const start = times[0].getAttribute('datetime');
+        const end = times[times.length - 1].getAttribute('datetime');
+        const label = entry.querySelector('.status');
+        const undecided = entry.querySelector('.language').textContent.trim() === 'To be determined';
+        if (end < today) {
+          entry.classList.remove('current', 'planned');
+          if (undecided) {
+            label.textContent = 'Not recorded';
+          } else {
+            entry.classList.add('completed');
+            label.textContent = 'Completed';
+          }
+        } else if (start <= today) {
+          entry.classList.remove('completed', 'planned');
+          entry.classList.add('current');
+          label.textContent = 'Current';
+        }
+      }
+    }
+    updateStatusesByDate();
+
+    function applyFilters() {
+      const term = search.value.trim().toLocaleLowerCase();
+      let visible = 0;
+      for (const entry of entries) {
+        const status = entry.classList.contains('completed') ? 'completed'
+          : entry.classList.contains('current') ? 'current'
+          : ['TBD', 'Not recorded'].includes(entry.querySelector('.status').textContent.trim()) ? 'tbd' : 'planned';
+        const matches = (filter.value === 'all' || status === filter.value) && entry.textContent.toLocaleLowerCase().includes(term);
+        entry.hidden = !matches;
+        if (matches) visible++;
+      }
+      empty.hidden = visible !== 0;
+    }
+    search.addEventListener('input', applyFilters);
+    filter.addEventListener('change', applyFilters);
+  </script>
+</body>
+</html>
