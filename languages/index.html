@@ -162,6 +162,16 @@
     }
     updateStatusesByDate();
 
+    // Open the timeline at the current week (scrolls only the timeline box, not the page).
+    function scrollToCurrentWeek() {
+      const viewport = document.querySelector('.timeline-viewport');
+      const current = document.querySelector('.timeline .entry.current');
+      if (!viewport || !current) return;
+      const offset = current.getBoundingClientRect().top - viewport.getBoundingClientRect().top;
+      viewport.scrollTop += offset - 8;
+    }
+    scrollToCurrentWeek();
+
     function applyFilters() {
       const term = search.value.trim().toLocaleLowerCase();
       let visible = 0;
