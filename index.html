@@ -179,13 +179,44 @@
     const filter = document.getElementById('status-filter');
     const entries = Array.from(document.querySelectorAll('.timeline .entry'));
     const empty = document.getElementById('no-results');
+
+    // Set each week's status from today's date (Europe/Amsterdam), so the timeline moves forward on its own.
+    // Past weeks become "Completed", the week containing today becomes "Current";
+    // future weeks keep the label written in the HTML (Planned, Tentative or TBD).
+    // A past week whose language was never chosen shows "Not recorded" instead of "Completed".
+    function updateStatusesByDate() {
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Amsterdam' }).format(new Date()); // YYYY-MM-DD
+      for (const entry of entries) {
+        const times = entry.querySelectorAll('.date time[datetime]');
+        if (times.length < 2) continue;
+        const start = times[0].getAttribute('datetime');
+        const end = times[times.length - 1].getAttribute('datetime');
+        const label = entry.querySelector('.status');
+        const undecided = entry.querySelector('.language').textContent.trim() === 'To be determined';
+        if (end < today) {
+          entry.classList.remove('current', 'planned');
+          if (undecided) {
+            label.textContent = 'Not recorded';
+          } else {
+            entry.classList.add('completed');
+            label.textContent = 'Completed';
+          }
+        } else if (start <= today) {
+          entry.classList.remove('completed', 'planned');
+          entry.classList.add('current');
+          label.textContent = 'Current';
+        }
+      }
+    }
+    updateStatusesByDate();
+
     function applyFilters() {
       const term = search.value.trim().toLocaleLowerCase();
       let visible = 0;
       for (const entry of entries) {
         const status = entry.classList.contains('completed') ? 'completed'
           : entry.classList.contains('current') ? 'current'
-          : entry.querySelector('.status').textContent.trim() === 'TBD' ? 'tbd' : 'planned';
+          : ['TBD', 'Not recorded'].includes(entry.querySelector('.status').textContent.trim()) ? 'tbd' : 'planned';
         const matches = (filter.value === 'all' || status === filter.value) && entry.textContent.toLocaleLowerCase().includes(term);
         entry.hidden = !matches;
         if (matches) visible++;
