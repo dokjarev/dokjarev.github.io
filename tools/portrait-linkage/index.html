@@ -3,87 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="description" content="PORTRAIT synthetic ID encryption and decryption demonstration. No patient data.">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./app.js" defer></script>
-  <title>PORTRAIT · ID encryption prototype | Jarev</title>
+  <meta http-equiv="refresh" content="0;url=../encryption/">
+  <link rel="canonical" href="https://jarev.nl/tools/encryption/">
+  <title>Encryption tool moved · Jarev</title>
 </head>
 <body>
-  <header class="shell topbar">
-    <a class="brand" href="/">JAREV</a>
-    <span class="top-note">Research tools / experiment</span>
-  </header>
-  <main class="shell">
-    <p class="eyebrow">PORTRAIT · Local browser cryptography</p>
-    <h1>Identifier encryption</h1>
-    <p class="lede">Encrypt a fictitious identifier into a portable token, or decrypt a previously generated token using the same passphrase.</p>
-    <aside class="notice" aria-label="Safety restriction">
-      <strong>Prototype — synthetic identifiers only</strong>
-      <p>This tool is published on a publicly accessible website and is <strong>not approved for real HiX patient numbers</strong>. Test only with identifiers beginning with <code>TEST-</code>. For clinical research use, first agree the linkage process with LUMC and preferably use Castor's own encrypted, searchable fields.</p>
-    </aside>
-
-    <section class="panel" aria-labelledby="tool-heading">
-      <div class="panel-heading">
-        <h2 id="tool-heading">Local tool</h2>
-        <span class="chip">No account · No data saved by this page</span>
-      </div>
-      <div class="tabs" role="group" aria-label="Choose mode">
-        <button type="button" id="encryptTab" aria-pressed="true" class="selected">Encrypt</button>
-        <button type="button" id="decryptTab" aria-pressed="false">Decrypt</button>
-      </div>
-      <form id="cryptoForm" autocomplete="off" novalidate>
-        <label for="source" id="sourceLabel">Fictitious identifier</label>
-        <textarea id="source" rows="2" maxlength="512" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="TEST-000123" aria-describedby="sourceHint"></textarea>
-        <p class="hint" id="sourceHint">Use TEST- followed by 1–59 letters, digits, underscores or hyphens. Leading zeros are preserved.</p>
-
-        <label for="passphrase">Passphrase</label>
-        <input type="password" id="passphrase" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="At least 20 characters">
-        <p class="hint">The passphrase is not saved. A forgotten passphrase cannot be recovered by this prototype.</p>
-
-        <div id="confirmRow">
-          <label for="confirmPassphrase">Confirm passphrase</label>
-          <input type="password" id="confirmPassphrase" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type it again">
-        </div>
-        <label class="checkbox-line" id="testOnlyRow">
-          <input type="checkbox" id="testOnly">
-          <span>I confirm this is a synthetic test identifier, not a real patient identifier.</span>
-        </label>
-        <div class="actions">
-          <button type="submit" class="primary" id="runButton">Encrypt test ID</button>
-          <button type="button" id="clearButton">Clear all</button>
-        </div>
-      </form>
-
-      <p id="status" class="status" role="status" aria-live="polite"></p>
-      <div id="outputBlock" hidden>
-        <label for="output" id="outputLabel">Encrypted token</label>
-        <textarea id="output" rows="4" readonly spellcheck="false"></textarea>
-        <div class="actions">
-          <button type="button" id="copyButton">Copy token</button>
-        </div>
-        <p class="hint" id="outputHint">Copying may leave data in your system clipboard history.</p>
-      </div>
-    </section>
-
-    <section class="explain" aria-labelledby="about-heading">
-      <h2 id="about-heading">Important limitations</h2>
-      <p>The encryption uses browser Web Crypto (PBKDF2-SHA-256, 600,000 iterations, AES-256-GCM). The site code sends no data to a backend and does not use analytics, cookies or local storage.</p>
-      <p>Every encryption uses fresh randomness, so the same ID produces different tokens. <strong>Tokens cannot be searched by the original identifier</strong> without decrypting them. This tool does not connect to HiX or Castor and is not a replacement for an approved study code key.</p>
-      <details>
-        <summary>Technical details and security considerations</summary>
-        <ul>
-          <li>Version 1 tokens have prefix <code>PTR1.</code>. They are compatible with the earlier offline prototype.</li>
-          <li>A 16-byte random salt and 12-byte random nonce are generated per encryption. AES-GCM authenticates the result.</li>
-          <li>The encrypted output may be copied manually. The decrypted result clears automatically after 30 seconds or when the page is hidden.</li>
-          <li>Website hosting, public source code, third-party browser extensions, a compromised device, clipboard managers or password loss are not solved by this client-side demonstration.</li>
-          <li>The full source is available in the public <a href="https://github.com/dokjarev/dokjarev.github.io/tree/main/tools/portrait-linkage" rel="noopener noreferrer">website repository</a>. No real study identifiers belong in GitHub.</li>
-        </ul>
-      </details>
-    </section>
-  </main>
-  <footer class="shell">Jarev · PORTRAIT demonstration · Not approved for clinical use</footer>
+  <p>This tool is now available at <a href="../encryption/">Jarev Text Encryption</a>.</p>
 </body>
 </html>
