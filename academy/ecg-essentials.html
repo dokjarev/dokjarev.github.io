@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An original, evidence-informed introduction to systematic 12-lead ECG interpretation: recording quality, rate, rhythm, intervals, morphology, and clinical context.">
+<meta name="color-scheme" content="light">
+<title>ECG interpretation essentials | Jarev Academy</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.ecg-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:11px;margin:21px 0;padding:18px;border:1px solid #d7e4e9;border-radius:16px;background:#fff}
+.ecg-flow .ecg-node{padding:18px 12px;border-radius:12px;background:#f0faf9;text-align:center}
+.ecg-flow .ecg-node strong{display:block;font-size:1.3rem;line-height:1.25;color:#075e62}
+.ecg-flow .ecg-node span{font-size:.87rem;color:#42616d}
+.ecg-flow .ecg-arrow{color:#087d80;font-size:1.5rem;font-weight:700}
+.ecg-group{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-top:9px}
+.ecg-group span{padding:4px 7px;border:1px solid #c2dedd;border-radius:6px;background:#fff;color:#285b64;font-size:.79rem}
+.ecg-caption{color:#526978;font-size:.88rem;margin:0 0 24px}
+.ecg-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:18px 0}
+.ecg-metric{border:1px solid #dde7eb;background:#fff;border-radius:11px;padding:14px}
+.ecg-metric b{display:block;font-size:1.12rem}
+.ecg-metric span{display:block;color:#526978;font-size:.89rem}
+.ecg-takeaway{background:#fff;border:1px solid #dce6eb;border-radius:14px;padding:20px 24px;margin:25px 0}
+.ecg-takeaway h2{font-size:1.15rem;margin:0 0 8px}
+.ecg-takeaway ol{margin:0}
+.ecg-selfcheck{background:#f4f9fb;border:1px solid #dce6eb;border-radius:14px;padding:20px 24px}
+.ecg-selfcheck summary{cursor:pointer;font-weight:700;color:#087d80}
+.ecg-diagram{border:1px solid #dce6eb;background:#fff;border-radius:14px;padding:20px;margin:24px 0}
+.ecg-diagram .strips{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ecg-diagram .strip{min-width:0}
+.ecg-diagram .strip strong{font-size:.94rem}
+.ecg-diagram svg{display:block;width:100%;height:auto;background:#fafcfc;border:1px solid #e2e9ed;border-radius:8px}
+.ecg-diagram .strip p{color:#5e7280;font-size:.86rem;margin:5px 0}
+.ecg-diagram svg path{fill:none;stroke:#0b747a;stroke-width:3.4;stroke-linejoin:round;stroke-linecap:round}
+.ecg-diagram svg .grid-line{stroke:#e5eeee;stroke-width:.9}
+.ecg-diagram .strip:nth-child(2) svg path.wave{stroke:#3c6477}
+@media(max-width:740px){.ecg-flow{grid-template-columns:1fr;gap:8px}.ecg-arrow{transform:rotate(90deg);text-align:center}.ecg-metrics{grid-template-columns:1fr}.ecg-diagram .strips{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container">
+<a class="brand" href="../index.html">JAREV</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="../index.html">Home</a>
+<a href="index.html">Academy</a>
+<a href="ecg-essentials.html" aria-current="page">ECG essentials</a>
+</nav>
+</div></header>
+
+<main class="container page-main">
+<div class="breadcrumb"><a href="index.html">Academy</a> / ECG interpretation essentials</div>
+<div class="columns">
+<article class="article">
+<header class="article-head">
+<p class="eyebrow">Clinical education · ECG fundamentals</p>
+<h1>ECG interpretation essentials</h1>
+<p class="lead">From electrical recording to clinical meaning: a practical framework for reading a 12-lead electrocardiogram without losing sight of the patient.</p>
+<span class="pill soon">Public working draft · Version 0.1</span>
+<span class="pill neutral">28 October 2026</span>
+<span class="pill neutral">~10-minute read</span>
+</header>
+
+<p>A 12-lead ECG can reveal important abnormalities of heart rate, rhythm, conduction and repolarization. Yet interpretation begins <em>before</em> recognizing a waveform. Was the tracing acquired correctly? What is the clinical question? Does a finding explain the patient's symptoms? This guide develops a deliberately simple approach for learners, not a definitive diagnostic algorithm.</p>
+
+<h2 id="views">1. Understand what the ECG actually records</h2>
+<p>The standard resting 12-lead ECG uses <strong>10 surface electrodes</strong>: four limb electrodes and six precordial (chest) electrodes. Those electrical measurements are combined into <strong>12 leads</strong>, or views of cardiac electrical activity. An electrode is a physical sensor; a lead is a particular view derived from the recorded signals. <a href="#ref1">[1]</a></p>
+
+<div class="ecg-flow" role="img" aria-label="Original schematic: four limb electrodes plus six chest electrodes produce six frontal-plane leads and six precordial leads, for a total of twelve ECG leads.">
+<div class="ecg-node"><strong>4 + 6</strong><span>limb + chest electrodes</span></div>
+<div class="ecg-arrow" aria-hidden="true">→</div>
+<div class="ecg-node"><strong>6 frontal views</strong><span>I, II, III, aVR, aVL, aVF</span><div class="ecg-group" aria-hidden="true"><span>I</span><span>II</span><span>III</span></div></div>
+<div class="ecg-arrow" aria-hidden="true">+</div>
+<div class="ecg-node"><strong>6 chest views</strong><span>V1, V2, V3, V4, V5, V6</span><div class="ecg-group" aria-hidden="true"><span>V1–V3</span><span>V4–V6</span></div></div>
+</div>
+<p class="ecg-caption">Figure 1. Original conceptual schematic. The six frontal and six precordial leads together make a standard 12-lead ECG; the drawing is not a map of electrode locations.</p>
+
+<p>When a waveform looks implausible, consider electrode position, a cable connection problem, movement, muscular activity or electrical noise. A misplaced electrode can produce misleading axis, polarity or morphology. Always check identification, recording speed, gain and recording quality before drawing conclusions. <a href="#ref1">[1]</a></p>
+
+<div class="ecg-metrics" aria-label="Common standard ECG paper calibration">
+<div class="ecg-metric"><b>25 mm/s</b><span>Common paper speed</span></div>
+<div class="ecg-metric"><b>10 mm/mV</b><span>Common voltage calibration</span></div>
+<div class="ecg-metric"><b>40 ms</b><span>One small 1-mm box at 25 mm/s</span></div>
+</div>
+<p class="muted small">These are common standard settings, not guarantees. If the speed or gain differs, the appearance of intervals and amplitudes changes.</p>
+
+<h2 id="reading">2. Read in a consistent sequence</h2>
+<p>Instead of memorizing isolated patterns, ask a small number of repeatable questions. Each answer narrows the next question.</p>
+
+<div class="step"><strong>First: rate and rhythm</strong>Count the ventricular rate and examine the R–R intervals. Is the rhythm regular, irregularly irregular or patterned? Identify atrial activity: do P waves precede each QRS, and is the relationship consistent? A pulse rate and an electrical heart rate may not always match.</div>
+
+<div class="step"><strong>Next: orientation and conduction</strong>Estimate the frontal QRS axis, then inspect the PR interval, QRS duration and QT/QTc. As rough adult reference points, PR is usually about 120–200 ms and a QRS duration of 120 ms or more is considered wide. QT interpretation depends on heart rate, correction method, patient characteristics and the measurement itself. Avoid treating a computer-generated QTc as unquestionable. <a href="#ref2">[2]</a></div>
+
+<div class="step"><strong>Then: waveforms and repolarization</strong>Look across related leads for P-wave features, QRS morphology, abnormal Q waves, R-wave progression, ST-segment shifts and T-wave abnormalities. Describe <em>what is present</em> before naming a diagnosis; a single unusual wave is rarely the whole story.</div>
+
+<div class="step"><strong>Finally: the clinical context</strong>Compare with a prior ECG when available. Consider symptoms, vital signs, medication effects, electrolytes, relevant history and examination findings. Ask whether a repeat ECG, additional leads, monitoring or further assessment is warranted. An ECG is evidence, not a stand-alone diagnosis.</div>
+
+<h2 id="recording">3. A useful trap: recording settings can look like disease</h2>
+<p>A waveform may appear to shrink when voltage gain is reduced, even though the underlying measured signal is unchanged. This is why an unexpectedly low-amplitude tracing should prompt a calibration check alongside clinical assessment.</p>
+
+<figure class="ecg-diagram">
+<div class="strips">
+<div class="strip">
+<strong>Gain: 10 mm/mV</strong>
+<svg viewBox="0 0 320 130" role="img" aria-label="Stylized QRS-like deflection at standard gain">
+<path class="grid-line" d="M0 25 H320 M0 50 H320 M0 75 H320 M0 100 H320 M40 0 V130 M80 0 V130 M120 0 V130 M160 0 V130 M200 0 V130 M240 0 V130 M280 0 V130"/>
+<path class="wave" d="M5 85 L48 85 Q59 78 70 85 L92 85 L108 96 L126 18 L143 112 L157 85 L185 85 Q207 58 232 85 L315 85"/>
+</svg>
+<p>Same schematic event, displayed taller.</p>
+</div>
+<div class="strip">
+<strong>Gain: 5 mm/mV</strong>
+<svg viewBox="0 0 320 130" role="img" aria-label="Same stylized event at half the display gain">
+<path class="grid-line" d="M0 25 H320 M0 50 H320 M0 75 H320 M0 100 H320 M40 0 V130 M80 0 V130 M120 0 V130 M160 0 V130 M200 0 V130 M240 0 V130 M280 0 V130"/>
+<path class="wave" d="M5 85 L48 85 Q59 81.5 70 85 L92 85 L108 90.5 L126 51.5 L143 98.5 L157 85 L185 85 Q207 71.5 232 85 L315 85"/>
+</svg>
+<p>Half the plotted voltage deflection; timing unchanged.</p>
+</div>
+</div>
+<figcaption class="ecg-caption">Figure 2. Original teaching illustration, not a real patient ECG and not anatomically representative of individual waves. It shows the effect of gain on displayed amplitude only.</figcaption>
+</figure>
+
+<h2 id="danger">4. Recognize findings that change urgency</h2>
+<p>A concerning ECG must be evaluated with the patient's condition. For example, <strong>syncope with marked bradycardia</strong>, <strong>high-grade or complete AV block</strong>, a dangerous tachyarrhythmia, or <strong>dynamic changes suggesting acute myocardial ischemia</strong> may require urgent assessment. Do not assume every bradycardia warrants pacing: the type of conduction disturbance, potential reversible causes and clinical context matter. <a href="#ref2">[2]</a></p>
+
+<p>In suspected acute coronary syndrome, guidelines emphasize prompt 12-lead recording and interpretation, with repeat ECGs when the first tracing is nondiagnostic or symptoms evolve. A normal-looking initial ECG does not rule out an acute coronary syndrome. These decisions belong to clinical protocols and qualified teams. <a href="#ref3">[3]</a> <a href="#ref4">[4]</a></p>
+
+<h2 id="practice">5. One-minute self-check</h2>
+<div class="ecg-selfcheck">
+<p><strong>Thought experiment:</strong> Two consecutive ECG printouts from the same stable patient show visibly different QRS heights. The displayed heart rate, QRS duration and waveform timing appear unchanged. On the first printout the calibration reads 10 mm/mV; on the second, 5 mm/mV. What is the first technical explanation to consider?</p>
+<details><summary>Reveal explanation</summary>
+<p>At 5 mm/mV, the <em>same measured voltage</em> occupies half the vertical distance on paper. Verify calibration before interpreting the apparent amplitude difference as a clinical change. This example does not exclude simultaneous real disease; it illustrates why recording conditions should be checked first.</p>
+</details>
+</div>
+
+<div class="ecg-takeaway">
+<h2>At the bedside, remember this sequence</h2>
+<ol>
+<li><strong>Verify</strong> the recording and its calibration.</li>
+<li><strong>Describe</strong> the rate, rhythm, conduction and waveforms.</li>
+<li><strong>Compare</strong> related leads and previous ECGs.</li>
+<li><strong>Interpret</strong> the tracing in the patient's clinical context.</li>
+<li><strong>Act</strong> according to urgency and appropriate clinical guidance.</li>
+</ol>
+</div>
+
+<h2 id="limits">Scope and editorial status</h2>
+<p>This is a <strong>public working draft (v0.1)</strong> for undergraduate and early postgraduate education. It is intentionally introductory, is <strong>not yet independently peer reviewed</strong>, and does not replace formal ECG training, specialist interpretation or local emergency-care protocols. Thresholds and examples are primarily for adults. Future updates may add independently created case exercises, lead-placement diagrams and detailed AV block comparisons.</p>
+<p>Written independently for Jarev Academy from publicly available scientific literature. No institutional teaching questions, cases, slides, answer keys or graphics are used. <strong>Content reviewed for this draft:</strong> 28 October 2026.</p>
+
+<h2 id="references">Selected primary references</h2>
+<ol class="references">
+<li id="ref1">Kligfield P, et al. Recommendations for the standardization and interpretation of the electrocardiogram: Part I—the ECG and its technology. <em>Circulation</em>. 2007. <a href="https://doi.org/10.1161/CIRCULATIONAHA.106.180200" target="_blank" rel="noopener noreferrer">doi:10.1161/CIRCULATIONAHA.106.180200</a>.</li>
+<li id="ref2">Kusumoto FM, et al. 2018 ACC/AHA/HRS guideline on the evaluation and management of patients with bradycardia and cardiac conduction delay. <em>Circulation</em>. 2019. <a href="https://doi.org/10.1161/CIR.0000000000000628" target="_blank" rel="noopener noreferrer">doi:10.1161/CIR.0000000000000628</a>.</li>
+<li id="ref3">Byrne RA, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. <em>European Heart Journal</em>. 2023. <a href="https://doi.org/10.1093/eurheartj/ehad191" target="_blank" rel="noopener noreferrer">doi:10.1093/eurheartj/ehad191</a>.</li>
+<li id="ref4">Rao SV, et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. <em>Journal of the American College of Cardiology</em>. 2025. <a href="https://doi.org/10.1016/j.jacc.2024.11.009" target="_blank" rel="noopener noreferrer">doi:10.1016/j.jacc.2024.11.009</a>.</li>
+</ol>
+<a class="back" href="index.html">← Return to Jarev Academy</a>
+</article>
+<aside class="sidebar" aria-label="Page contents">
+<div class="card">
+<h2>On this page</h2>
+<ul>
+<li><a href="#views">What 12 leads mean</a></li>
+<li><a href="#reading">Reading sequence</a></li>
+<li><a href="#recording">Calibration trap</a></li>
+<li><a href="#danger">Clinical urgency</a></li>
+<li><a href="#practice">Self-check</a></li>
+<li><a href="#limits">Scope</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<p class="muted small">Independent educational draft, not affiliated with or endorsed by any university or hospital.</p>
+</div>
+</aside>
+</div>
+</main>
+<footer class="footer"><div class="container"><span>Jarev Academy · An independent, evolving learning resource</span><span>Educational content · Not individualized medical advice</span></div></footer>
+</body>
+</html>
