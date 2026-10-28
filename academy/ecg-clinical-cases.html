@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Part II: case-based ECG interpretation in chest pain, sudden collapse, cross-clamp removal and difficult separation from cardiopulmonary bypass.">
+<meta name="color-scheme" content="light">
+<title>ECG reasoning in clinical practice | Jarev Academy</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.ecg-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:11px;margin:21px 0;padding:18px;border:1px solid #d7e4e9;border-radius:16px;background:#fff}
+.ecg-flow .ecg-node{padding:18px 12px;border-radius:12px;background:#f0faf9;text-align:center}
+.ecg-flow .ecg-node strong{display:block;font-size:1.3rem;line-height:1.25;color:#075e62}
+.ecg-flow .ecg-node span{font-size:.87rem;color:#42616d}
+.ecg-flow .ecg-arrow{color:#087d80;font-size:1.5rem;font-weight:700}
+.ecg-group{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-top:9px}
+.ecg-group span{padding:4px 7px;border:1px solid #c2dedd;border-radius:6px;background:#fff;color:#285b64;font-size:.79rem}
+.ecg-caption{color:#526978;font-size:.88rem;margin:0 0 24px}
+.ecg-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:18px 0}
+.ecg-metric{border:1px solid #dde7eb;background:#fff;border-radius:11px;padding:14px}
+.ecg-metric b{display:block;font-size:1.12rem}
+.ecg-metric span{display:block;color:#526978;font-size:.89rem}
+.ecg-takeaway{background:#fff;border:1px solid #dce6eb;border-radius:14px;padding:20px 24px;margin:25px 0}
+.ecg-takeaway h2{font-size:1.15rem;margin:0 0 8px}
+.ecg-takeaway ol{margin:0}
+.ecg-selfcheck{background:#f4f9fb;border:1px solid #dce6eb;border-radius:14px;padding:20px 24px}
+.ecg-selfcheck summary{cursor:pointer;font-weight:700;color:#087d80}
+.ecg-diagram{border:1px solid #dce6eb;background:#fff;border-radius:14px;padding:20px;margin:24px 0}
+.ecg-diagram .strips{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ecg-diagram .strip{min-width:0}
+.ecg-diagram .strip strong{font-size:.94rem}
+.ecg-diagram svg{display:block;width:100%;height:auto;background:#fafcfc;border:1px solid #e2e9ed;border-radius:8px}
+.ecg-diagram .strip p{color:#5e7280;font-size:.86rem;margin:5px 0}
+.ecg-diagram svg path{fill:none;stroke:#0b747a;stroke-width:3.4;stroke-linejoin:round;stroke-linecap:round}
+.ecg-diagram svg .grid-line{stroke:#e5eeee;stroke-width:.9}
+.ecg-diagram .strip:nth-child(2) svg path.wave{stroke:#3c6477}
+@media(max-width:740px){.ecg-flow{grid-template-columns:1fr;gap:8px}.ecg-arrow{transform:rotate(90deg);text-align:center}.ecg-metrics{grid-template-columns:1fr}.ecg-diagram .strips{grid-template-columns:1fr}}
+.clinical-frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:23px 0}.clinical-frame .stage{background:#f0faf9;border:1px solid #cce3e4;border-radius:11px;padding:14px 11px}.clinical-frame .stage b{display:block;color:#087d80;font-size:1.04rem}.clinical-frame .stage strong{display:block;line-height:1.28;font-size:.94rem}.clinical-frame .stage span{display:block;font-size:.84rem;color:#526978;margin-top:6px;line-height:1.4}.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:22px 0}.clinical-case{background:#fff;border:1px solid #dce6eb;border-radius:15px;padding:21px}.clinical-case .scene{color:#087d80;font-weight:800;letter-spacing:.06em;font-size:.76rem;text-transform:uppercase;margin:0 0 6px}.clinical-case h3{margin:0 0 12px;line-height:1.3;font-size:1.18rem}.clinical-case p{margin:8px 0;font-size:.94rem}.clinical-case dt{font-size:.83rem;font-weight:800;color:#3e6272;margin-top:11px}.clinical-case dd{margin:2px 0 0;font-size:.93rem}.clinical-case .limits{font-size:.84rem;color:#627684;border-top:1px solid #e2e9ed;margin-top:13px;padding-top:10px}.hypothesis-note{background:#fff;border-left:4px solid #087d80;padding:17px 20px;margin:24px 0;border-radius:0 12px 12px 0}.hypothesis-note p{margin:0}.hypothesis-note p+p{margin-top:10px}.skill-cycle{padding:20px;background:#f0faf9;border-radius:14px;border:1px solid #d1e4e4}.skill-cycle li{margin:7px 0}.skill-cycle ol{margin-bottom:5px}.comparison{overflow-x:auto;margin:17px 0}.comparison table{border-collapse:collapse;min-width:550px;width:100%;font-size:.91rem;background:#fff}.comparison th,.comparison td{padding:11px 13px;border:1px solid #dce6eb;text-align:left;vertical-align:top}.comparison th{background:#edf7f7;color:#245b60}.clinical-question{background:#fff;border:1px solid #dce6eb;border-radius:14px;padding:18px 23px}.clinical-question summary{cursor:pointer;color:#087d80;font-weight:750}@media(max-width:850px){.clinical-frame{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}}@media(max-width:460px){.clinical-frame{grid-template-columns:1fr}} 
+</style>
+<style>
+.course-nav{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 27px}.course-nav a{display:inline-block;text-decoration:none;font-weight:700;font-size:.9rem;border:1px solid #cde0e3;background:#fff;color:#346271;border-radius:10px;padding:10px 13px}.course-nav a[aria-current="page"]{background:#e6f6f3;border-color:#0c888c;color:#075f61}.reference-link{font-size:.92rem}.focal{border-left:4px solid #087d80;padding:16px 20px;background:#fff;border-radius:0 12px 12px 0;margin:20px 0}.focal p{margin:0}.focal p+p{margin-top:9px}.two-up{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:18px 0}.two-up .card{padding:20px}.case{border:1px solid #d7e5e9;border-radius:14px;background:#fff;padding:22px;margin:20px 0}.case .eyebrow{margin:0 0 5px}.case h2{margin:0 0 15px}.case dl{display:grid;grid-template-columns:minmax(145px,1fr) 2.4fr;gap:8px 16px;margin:15px 0}.case dt{color:#365b67;font-weight:750}.case dd{margin:0}.case details{border:1px solid #dce6eb;padding:12px 16px;border-radius:9px;background:#f7fbfb;margin:14px 0}.case summary{cursor:pointer;font-weight:750;color:#087d80}.case .decision{font-weight:700;color:#1a4e54}.reference-list li{margin:12px 0}.decision-band{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.decision-band span{background:#f0faf9;border:1px solid #cee6e4;color:#245e63;border-radius:10px;padding:10px;font-weight:650;flex:1;min-width:140px;text-align:center}.comparison-table{border-collapse:collapse;width:100%;font-size:.93rem;background:#fff}.comparison-table th,.comparison-table td{text-align:left;vertical-align:top;padding:12px;border:1px solid #dce6eb}.comparison-table th{background:#edf8f7}@media(max-width:720px){.two-up{grid-template-columns:1fr}.case dl{display:block}.case dt{margin-top:11px}.case dd{margin-top:3px}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container">
+<a class="brand" href="../index.html">JAREV</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="../index.html">Home</a>
+<a href="index.html">Academy</a>
+<a href="ecg-clinical-cases.html" aria-current="page">ECG clinical reasoning</a>
+</nav></div></header>
+<main class="container page-main">
+<div class="breadcrumb"><a href="index.html">Academy</a> / ECG clinical reasoning / Part 2</div>
+<div class="course-nav" aria-label="ECG course sections">
+<a href="ecg-essentials.html" >Part I · How to reason with ECGs</a>
+<a href="ecg-clinical-cases.html" aria-current="page">Part II · Applying the method</a>
+</div>
+<div class="columns"><article class="article">
+<header class="article-head">
+<p class="eyebrow">Clinical education · Part 2 of 2</p>
+<h1>ECG reasoning in clinical practice</h1>
+<p class="lead">Four situations in which the same electrical recording serves very different clinical questions: chest pain, sudden collapse, reperfusion and difficult separation from bypass.</p>
+<span class="pill">Clinical reasoning series</span> <span class="pill neutral">28 October 2026</span>
+</header>
+<p>These cases deliberately begin <strong>before</strong> the ECG appears. Each first asks you to name the important clinical problem and predict which electrical features would matter. Only then does it introduce findings, a competing explanation, and the limitations of the test.</p>
+<h2 id="using">How to use the cases</h2>
+<ol>
+<li>Read the <strong>clinical trigger</strong> and pause. Decide what is most urgent, and what immediate action might already be necessary.</li>
+<li>State <strong>one working diagnosis</strong> and at least one serious alternative.</li>
+<li>Predict the <strong>specific ECG evidence</strong> you would seek, before reading the discussion.</li>
+<li>Open the <strong>reasoning and pitfalls</strong> section. Identify what additional evidence is needed and whether your initial hypothesis is still plausible.</li>
+<li>After the urgent question is answered, use the systematic second pass from <a href="ecg-essentials.html">Part I</a>.</li>
+</ol>
+<p>These are educational thought exercises, not real patient records or substitutes for clinical decision pathways. The source-guideline links are placed directly beside the relevant clinical reasoning.</p>
+
+<section class="case" id="chest">
+<p class="eyebrow">Case 1 · Emergency department</p>
+<h2>Chest pain with ongoing symptoms</h2>
+<p><strong>Clinical trigger:</strong> A patient develops severe central chest discomfort with diaphoresis. Symptoms persist at first medical assessment.</p>
+<div class="decision-band"><span>Ischemia?</span><span>Acute coronary occlusion?</span><span>Other life threats?</span></div>
+<dl><dt>What must be considered first?</dt><dd>Acute coronary syndrome (ACS), including an acute coronary occlusion that may require urgent reperfusion assessment. Do not ignore alternative causes of chest pain and hemodynamic compromise.</dd>
+<dt>What ECG findings would you predict?</dt><dd>New ST-segment elevation or equivalent ischemic patterns, ST depression, T-wave changes, reciprocal changes or dynamic changes across contiguous leads. Which pattern would require activation of the appropriate pathway?</dd>
+<dt>New information</dt><dd>The first ECG is nondiagnostic, but the pain continues.</dd>
+<dt>What can you conclude?</dt><dd>A nondiagnostic initial recording cannot safely exclude ACS. The <a href="https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009" target="_blank" rel="noopener noreferrer">2025 ACC/AHA multisociety ACS guideline</a> recommends timely ECG acquisition and serial 12-lead ECGs when symptoms persist, suspicion remains high, or the condition deteriorates. Biomarkers and the full clinical assessment are also needed.</dd></dl>
+<details><summary>Reasoning and pitfalls</summary>
+<p><strong>Potential anchoring:</strong> assuming that the absence of classic ST elevation rules out an occlusive culprit lesion or ACS. In a review of ECG reasoning, <a href="https://doi.org/10.1016/j.jelectrocard.2024.153803" target="_blank" rel="noopener noreferrer">Nunes de Alencar et al. (2024)</a> emphasize that ECG signs are imperfect surrogate markers of disease. The <a href="https://doi.org/10.1093/eurheartj/ehad191" target="_blank" rel="noopener noreferrer">2023 ESC ACS guideline</a> likewise structures initial clinical pathways around the ECG without treating a nondiagnostic trace as exclusion of ACS.</p>
+<p><strong>Learning question:</strong> Which negative ECG finding would genuinely lower your suspicion, and which merely fails to confirm the first hypothesis?</p></details>
+</section>
+
+<section class="case" id="collapse">
+<p class="eyebrow">Case 2 · Resuscitation</p>
+<h2>Sudden collapse</h2>
+<p><strong>Clinical trigger:</strong> An adult becomes unresponsive and is not breathing normally. An emergency response is activated.</p>
+<div class="decision-band"><span>Cardiac arrest?</span><span>Shockable rhythm?</span><span>Perfusing rhythm?</span></div>
+<dl><dt>What must be determined first?</dt><dd>Recognition of cardiac arrest and initiation of the appropriate resuscitation response. Rapid breathing and pulse assessment must not become an extended diagnostic examination.</dd>
+<dt>Which electrical distinction changes management?</dt><dd>After the monitor/defibrillator is attached, ventricular fibrillation or pulseless ventricular tachycardia is a <em>shockable</em> category; PEA and asystole are <em>non-shockable</em> categories. The distinction determines the resuscitation branch.</dd>
+<dt>New information</dt><dd>The monitor shows organized complexes, yet no definite pulse is present.</dd>
+<dt>What can you conclude?</dt><dd>Electrical organization is not proof of mechanical circulation. Continue assessment and resuscitation according to the <a href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support/" target="_blank" rel="noopener noreferrer">2025 AHA Adult Advanced Life Support guidance</a>; do not defer CPR to obtain a conventional 12-lead ECG.</dd></dl>
+<details><summary>Reasoning and pitfalls</summary>
+<p><strong>Potential anchoring:</strong> seeing a familiar sinus-like monitor rhythm and assuming adequate circulation. The useful question here is <em>“Is this a perfusing rhythm?”</em>, rather than beginning with axis, QTc or chamber criteria.</p>
+<p><strong>Learning question:</strong> In what situation does an ECG pattern represent a rhythm category but fail to establish the physiological state of the patient? The <a href="https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-ACLS-CA-250527.pdf" target="_blank" rel="noopener noreferrer">2025 AHA arrest algorithm</a> provides the reference pathways.</p></details>
+</section>
+
+<section class="case" id="declamp">
+<p class="eyebrow">Case 3 · Cardiac operating room</p>
+<h2>Immediately after aortic cross-clamp removal</h2>
+<p><strong>Clinical trigger:</strong> During cardiac surgery, the aortic cross-clamp is removed. Organized electrical and mechanical recovery is not promptly apparent while extracorporeal support continues.</p>
+<div class="decision-band"><span>VF or severe arrhythmia?</span><span>Conduction or metabolic problem?</span><span>Myocardial recovery?</span></div>
+<dl><dt>What is the immediate problem representation?</dt><dd>Delayed recovery after reperfusion. Identify the rhythm and whether there is effective myocardial activity, considering the level of ongoing bypass support.</dd>
+<dt>What ECG evidence would help?</dt><dd>Distinguish organized QRS complexes from ventricular fibrillation or other significant rhythm disturbances; examine QRS widening or newly abnormal conduction.</dd>
+<dt>What alternatives require consideration?</dt><dd>Residual cardioplegic effects, electrolyte or acid–base abnormalities, ischemia, possible coronary air and other operative or reperfusion-related factors. Do not infer a specific mechanism from the ECG alone.</dd>
+<dt>What additional information matters?</dt><dd>Myocardial activity, perfusion and pressure, the operative timeline, cardioplegia history, blood gases/electrolytes, and imaging when clinically appropriate. The <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11947607/" target="_blank" rel="noopener noreferrer">2024 EACTS/EACTAIC/EBCP CPB guideline</a> discusses perfusion, weaning and perioperative physiological factors; this vignette is an original teaching synthesis, not a guideline-derived algorithm for declamping.</dd></dl>
+<details><summary>Reasoning and pitfalls</summary>
+<p><strong>Potential anchoring:</strong> labeling a wide-complex rhythm as “hyperkalemia” before checking whether it reflects an arrhythmia, reperfusion-related ischemia, temperature, conduction injury, or other causes.</p>
+<p><strong>Learning question:</strong> Which observation distinguishes electrical disorganization from mechanically ineffective organized activity? Which immediate tests would change the team's interpretation?</p></details>
+</section>
+
+<section class="case" id="weaning">
+<p class="eyebrow">Case 4 · Cardiac operating room</p>
+<h2>Failure to separate from cardiopulmonary bypass</h2>
+<p><strong>Clinical trigger:</strong> After an attempted reduction in bypass support, the circulation remains inadequate and separation cannot be completed without escalating intervention.</p>
+<div class="decision-band"><span>Pump failure?</span><span>Ischemia?</span><span>Vasoplegia / loading?</span><span>Mechanical problem?</span></div>
+<dl><dt>What is the first clinical question?</dt><dd>Which physiologic mechanism prevents stable native circulation: ventricular dysfunction, a rhythm disturbance, inadequate loading, vasodilation, ischemia or a structural/surgical problem?</dd>
+<dt>What can the ECG contribute?</dt><dd>Identify a rhythm or conduction problem and look for evolving ST abnormalities, ideally compared with the pre-bypass tracing.</dd>
+<dt>New information</dt><dd>The monitor shows a plausible regular rhythm, yet arterial pressure remains inadequate during weaning.</dd>
+<dt>What can you conclude?</dt><dd>An electrically organized rhythm does not establish sufficient cardiac output. The <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11947607/" target="_blank" rel="noopener noreferrer">EACTS/EACTAIC/EBCP guideline's separation-from-CPB section</a> recommends multidisciplinary, structured assessment and emphasizes the role of transesophageal echocardiography, loading conditions and dynamic or structural abnormalities.</dd></dl>
+<details><summary>Reasoning and pitfalls</summary>
+<p><strong>Potential anchoring:</strong> treating a postoperative ECG or normal-looking monitor rhythm as proof that the myocardium is functioning adequately. Hemodynamic measurements and TOE may be far more decisive for identifying the mechanism in this setting.</p>
+<p><strong>Learning question:</strong> What would regional wall-motion abnormalities suggest? What alternative explanation would you consider if ventricular function were preserved but systemic vascular resistance were low?</p></details>
+</section>
+
+<h2 id="reflection">Compare the reasoning across cases</h2>
+<table class="comparison-table">
+<thead><tr><th>Clinical trigger</th><th>The first question</th><th>Why the ECG is not enough</th></tr></thead>
+<tbody><tr><td>Chest pain</td><td>Could this represent ACS or acute coronary occlusion?</td><td>One tracing can be nondiagnostic despite evolving disease.</td></tr>
+<tr><td>Sudden collapse</td><td>Is this arrest, and is the rhythm shockable?</td><td>Electrical activity alone does not establish a pulse.</td></tr>
+<tr><td>Cross-clamp release</td><td>Why is organized recovery delayed?</td><td>Metabolic, perfusion and operative causes require other evidence.</td></tr>
+<tr><td>Difficult CPB separation</td><td>Which mechanism prevents adequate native circulation?</td><td>ECG cannot establish adequate ventricular output or loading.</td></tr></tbody>
+</table>
+<p>The goal is to improve the sequence <strong>notice the clinical problem → predict the expected signal → interrogate the ECG → consider alternatives → integrate physiology</strong>. <a href="https://doi.org/10.1016/j.cjca.2024.04.005" target="_blank" rel="noopener noreferrer">Gupta et al. (2024)</a> motivate combining pattern recognition and inductive–deductive reasoning. For protection against bias, return to the structured second pass in <a href="ecg-essentials.html">Part I</a>; evidence summarized by <a href="https://doi.org/10.1097/ACM.0000000000004607" target="_blank" rel="noopener noreferrer">Oh et al. (2022)</a> supports systematic ECG training.</p>
+
+<h2 id="references">References</h2>
+<ol class="references reference-list">
+<li>Gupta S, et al. <a href="https://doi.org/10.1016/j.cjca.2024.04.005" target="_blank" rel="noopener noreferrer">Pattern Recognition and Inductive-Deductive Reasoning: 2 Cornerstones of Electrocardiogram Teaching</a>. <em>Can J Cardiol</em>. 2024.</li>
+<li>Nunes de Alencar J, et al. <a href="https://doi.org/10.1016/j.jelectrocard.2024.153803" target="_blank" rel="noopener noreferrer">Refining ECG interpretation: From false assumptions to evidence-based precision</a>. <em>J Electrocardiol</em>. 2024.</li>
+<li>Rao SV, et al. <a href="https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009" target="_blank" rel="noopener noreferrer">2025 ACC/AHA multisociety guideline for management of acute coronary syndromes</a>. <em>JACC</em>. 2025.</li>
+<li>Byrne RA, et al. <a href="https://doi.org/10.1093/eurheartj/ehad191" target="_blank" rel="noopener noreferrer">2023 ESC Guidelines for the management of acute coronary syndromes</a>. <em>Eur Heart J</em>. 2023.</li>
+<li>American Heart Association. <a href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support/" target="_blank" rel="noopener noreferrer">2025 Guidelines, Part 9: Adult Advanced Life Support</a>, including the adult cardiac arrest algorithm.</li>
+<li>Wahba A, et al. <a href="https://doi.org/10.1093/ejcts/ezae354" target="_blank" rel="noopener noreferrer">2024 EACTS/EACTAIC/EBCP Guidelines on cardiopulmonary bypass in adult cardiac surgery</a>. <em>Eur J Cardiothorac Surg</em>. Published 2025.</li>
+<li>Oh S-Y, et al. <a href="https://doi.org/10.1097/ACM.0000000000004607" target="_blank" rel="noopener noreferrer">Physician Training for Electrocardiogram Interpretation: A Systematic Review and Meta-Analysis</a>. <em>Acad Med</em>. 2022.</li></ol>
+<p class="muted small">Independent Jarev Academy educational material. Clinical cases are illustrative; follow current institutional protocols and specialist guidance for patient care.</p>
+<div class="course-nav"><a href="ecg-essentials.html">← Return to Part I · Reasoning method</a><a href="index.html">Jarev Academy index</a></div>
+</article>
+<aside class="sidebar" aria-label="Contents"><div class="card">
+<h2>Contents</h2><ul><li><a href="#using">How to practise</a></li><li><a href="#chest">Chest pain</a></li><li><a href="#collapse">Sudden collapse</a></li><li><a href="#declamp">Cross-clamp release</a></li><li><a href="#weaning">Separation from CPB</a></li><li><a href="#reflection">Compare the cases</a></li><li><a href="#references">References</a></li></ul>
+<p class="muted small">A clinical-first approach with a systematic verification step.</p>
+</div></aside>
+</div></main>
+<footer class="footer"><div class="container"><span>Jarev Academy · Independent medical education</span><span>Educational material · Not individualized medical advice</span></div></footer>
+</body></html>
