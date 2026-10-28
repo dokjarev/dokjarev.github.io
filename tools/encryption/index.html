@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="A browser-based text encryption and decryption demonstration using AES-256-GCM.">
+  <title>Text Encryption · Jarev Tools</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="/">JAREV</a>
+    <span>Tools / Encryption</span>
+  </header>
+  <main class="shell">
+    <p class="eyebrow">Jarev Tools · Client-side cryptography</p>
+    <h1>Text encryption</h1>
+    <p class="lede">Protect a short piece of text with a passphrase. Generate an encrypted token or decrypt a token using the same passphrase.</p>
+    <aside class="notice">
+      <strong>Experimental utility — not audited for sensitive information</strong>
+      <p>For demonstration and non-sensitive test text only. Do not use this public website for clinical records, personal identifiers, passwords, confidential documents or regulated data. It has no account, key recovery, or institutional security approval.</p>
+    </aside>
+    <section class="panel" aria-labelledby="toolHeading">
+      <div class="panelHeading">
+        <h2 id="toolHeading">Encrypt or decrypt</h2>
+        <span class="chip">Runs in your browser</span>
+      </div>
+      <div class="tabs" role="group" aria-label="Cryptography mode">
+        <button type="button" id="encryptTab" aria-pressed="true" class="selected">Encrypt</button>
+        <button type="button" id="decryptTab" aria-pressed="false">Decrypt</button>
+      </div>
+      <form id="cryptoForm" autocomplete="off" novalidate>
+        <label for="source" id="sourceLabel">Text to encrypt</label>
+        <textarea id="source" rows="4" maxlength="8192" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Example: A message for testing"></textarea>
+        <p class="hint" id="sourceHint">Up to 8,192 characters. Use non-sensitive sample text.</p>
+        <label for="passphrase">Passphrase</label>
+        <input type="password" id="passphrase" maxlength="512" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="At least 20 characters">
+        <p class="hint">The passphrase is never saved by this page. Losing it means losing access to the encrypted text.</p>
+        <div id="confirmRow">
+          <label for="confirmPassphrase">Confirm passphrase</label>
+          <input type="password" id="confirmPassphrase" maxlength="512" autocomplete="off" spellcheck="false" autocapitalize="off">
+        </div>
+        <div class="actions">
+          <button type="submit" id="runButton" class="primary">Encrypt text</button>
+          <button type="button" id="clearButton">Clear all</button>
+        </div>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <div id="outputBlock" hidden>
+        <label for="output" id="outputLabel">Encrypted token</label>
+        <textarea id="output" rows="5" readonly spellcheck="false"></textarea>
+        <div class="actions">
+          <button type="button" id="copyButton">Copy token</button>
+        </div>
+        <p class="hint" id="outputHint">Clipboard managers and clipboard history may retain copied tokens.</p>
+      </div>
+    </section>
+    <section class="explain" aria-labelledby="detailsHeading">
+      <h2 id="detailsHeading">How it works</h2>
+      <p>This is a static page with no backend, analytics, cookies or local storage. The application uses the browser Web Crypto API: PBKDF2-HMAC-SHA-256 for key derivation and AES-256-GCM for encryption.</p>
+      <p>Each encryption produces a different token, even for the same text and passphrase. This is expected. Tokens start with <code>ENC1.</code>; they are not compatible with tokens from earlier specialized prototypes.</p>
+      <details>
+        <summary>Security and technical limitations</summary>
+        <ul>
+          <li>600,000 PBKDF2 iterations; random 16-byte salt and 12-byte AES-GCM nonce per encryption; 128-bit authentication tag.</li>
+          <li>Processing occurs locally once page assets have loaded. The application code makes no network requests.</li>
+          <li>Text is not written to cookies, local storage or browser databases. Results clear when the tab is hidden or closed; decrypted output also clears after 30 seconds.</li>
+          <li>A public website, malicious browser extension, compromised computer, altered hosting content or clipboard history are outside the protection provided by this utility.</li>
+          <li>Encryption is not anonymization and does not replace access controls, approved key management, backup or institutional data-governance procedures.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+  <footer class="shell">Jarev · Browser tools · Experimental</footer>
+</body>
+</html>
