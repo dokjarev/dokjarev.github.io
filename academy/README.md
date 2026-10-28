@@ -6,7 +6,8 @@ Public educational section of [jarev.nl](https://jarev.nl/academy/).
 - `index.html`: Academy hub, topic tracks, and future media formats.
 - `peer-review.html`: Initial peer-review learning module, emphasizing Colombian Journal of Anesthesiology policies.
 - `cardiac-hemostasis.html`: Learning roadmap and primary guideline references for cardiac hemostasis.
-- `ecg-essentials.html`: Clinical-first ECG interpretation (v0.2); scenario-led hypothesis testing, systematic second pass, original figures, practice scenario and clinical guideline references.
+- `ecg-essentials.html`: **Part I — How clinicians reason with ECGs**. Clinical problem representation, pattern recognition vs hypothesis-driven reasoning, educational evidence, risk of anchoring, systematic verification and technical illustrations. Sources are linked inline at each claim.
+- `ecg-clinical-cases.html`: **Part II — ECG reasoning in clinical practice**. Four original progressive clinical examples (chest pain, sudden collapse, declamping, separation from CPB), with diagnostic prompts and linked primary guidelines and literature.
 - `styles.css`: Shared Academy styling.
 
 ## Content model
@@ -36,3 +37,11 @@ Mark planned content as planned until it has actually been published. Cite prima
 
 ## Maintenance
 When updating a topic, check hyperlinks, guidance dates, and any new evidence. Keep the public pages self-contained and easy to view on mobile.
+
+## ECG two-part series — editorial approach (28 October 2026)
+
+- Content is original and independent of institutional teaching materials; do not reuse local university questions, answers, illustrations, or teaching scripts.
+- Part I uses Gupta 2024, Ng 2024, Jay 2024, Viljoen 2021, Oh 2022, Nunes de Alencar 2024, and the 2012 ED-history bias study, all cited in context.
+- Part II uses 2025 ACC/AHA ACS, 2023 ESC ACS, 2025 AHA ALS, and the 2024 EACTS/EACTAIC/EBCP CPB guideline, as well as the ECG-education papers.
+- The scenario prompts are author-generated learning illustrations; the papers are cited for the specific statements they support, not as if they validated the whole teaching sequence.
+- Before future finalization: author review of clinical text, references and device/browser display; consider independently created or appropriately licensed ECG tracings in the next iteration.
