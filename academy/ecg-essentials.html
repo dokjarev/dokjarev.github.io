@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="An original, evidence-informed introduction to systematic 12-lead ECG interpretation: recording quality, rate, rhythm, intervals, morphology, and clinical context.">
+<meta name="description" content="A case-driven ECG guide: start with the clinical problem, name the diagnosis to confirm or exclude, and use targeted ECG findings to make decisions.">
 <meta name="color-scheme" content="light">
-<title>ECG interpretation essentials | Jarev Academy</title>
+<title>Clinical-first ECG interpretation | Jarev Academy</title>
 <link rel="stylesheet" href="styles.css">
 <style>
 .ecg-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:11px;margin:21px 0;padding:18px;border:1px solid #d7e4e9;border-radius:16px;background:#fff}
@@ -35,6 +35,7 @@
 .ecg-diagram svg .grid-line{stroke:#e5eeee;stroke-width:.9}
 .ecg-diagram .strip:nth-child(2) svg path.wave{stroke:#3c6477}
 @media(max-width:740px){.ecg-flow{grid-template-columns:1fr;gap:8px}.ecg-arrow{transform:rotate(90deg);text-align:center}.ecg-metrics{grid-template-columns:1fr}.ecg-diagram .strips{grid-template-columns:1fr}}
+.clinical-frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:23px 0}.clinical-frame .stage{background:#f0faf9;border:1px solid #cce3e4;border-radius:11px;padding:14px 11px}.clinical-frame .stage b{display:block;color:#087d80;font-size:1.04rem}.clinical-frame .stage strong{display:block;line-height:1.28;font-size:.94rem}.clinical-frame .stage span{display:block;font-size:.84rem;color:#526978;margin-top:6px;line-height:1.4}.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:22px 0}.clinical-case{background:#fff;border:1px solid #dce6eb;border-radius:15px;padding:21px}.clinical-case .scene{color:#087d80;font-weight:800;letter-spacing:.06em;font-size:.76rem;text-transform:uppercase;margin:0 0 6px}.clinical-case h3{margin:0 0 12px;line-height:1.3;font-size:1.18rem}.clinical-case p{margin:8px 0;font-size:.94rem}.clinical-case dt{font-size:.83rem;font-weight:800;color:#3e6272;margin-top:11px}.clinical-case dd{margin:2px 0 0;font-size:.93rem}.clinical-case .limits{font-size:.84rem;color:#627684;border-top:1px solid #e2e9ed;margin-top:13px;padding-top:10px}.hypothesis-note{background:#fff;border-left:4px solid #087d80;padding:17px 20px;margin:24px 0;border-radius:0 12px 12px 0}.hypothesis-note p{margin:0}.hypothesis-note p+p{margin-top:10px}.skill-cycle{padding:20px;background:#f0faf9;border-radius:14px;border:1px solid #d1e4e4}.skill-cycle li{margin:7px 0}.skill-cycle ol{margin-bottom:5px}.comparison{overflow-x:auto;margin:17px 0}.comparison table{border-collapse:collapse;min-width:550px;width:100%;font-size:.91rem;background:#fff}.comparison th,.comparison td{padding:11px 13px;border:1px solid #dce6eb;text-align:left;vertical-align:top}.comparison th{background:#edf7f7;color:#245b60}.clinical-question{background:#fff;border:1px solid #dce6eb;border-radius:14px;padding:18px 23px}.clinical-question summary{cursor:pointer;color:#087d80;font-weight:750}@media(max-width:850px){.clinical-frame{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}}@media(max-width:460px){.clinical-frame{grid-template-columns:1fr}} 
 </style>
 </head>
 <body>
@@ -53,16 +54,64 @@
 <article class="article">
 <header class="article-head">
 <p class="eyebrow">Clinical education · ECG fundamentals</p>
-<h1>ECG interpretation essentials</h1>
-<p class="lead">From electrical recording to clinical meaning: a practical framework for reading a 12-lead electrocardiogram without losing sight of the patient.</p>
-<span class="pill soon">Public working draft · Version 0.1</span>
+<h1>Clinical-first ECG interpretation</h1>
+<p class="lead">When a patient is deteriorating, you do not begin with the PR interval. You begin with a problem, a dangerous possibility, and the ECG evidence that would change what you do next.</p>
+<span class="pill">Clinical reasoning guide · Version 0.2</span>
 <span class="pill neutral">28 October 2026</span>
-<span class="pill neutral">~10-minute read</span>
+<span class="pill neutral">Case-based learning</span>
 </header>
 
-<p>A 12-lead ECG can reveal important abnormalities of heart rate, rhythm, conduction and repolarization. Yet interpretation begins <em>before</em> recognizing a waveform. Was the tracing acquired correctly? What is the clinical question? Does a finding explain the patient's symptoms? This guide develops a deliberately simple approach for learners, not a definitive diagnostic algorithm.</p>
+<p>A systematic ECG interpretation is valuable: it teaches you not to overlook important findings. But a patient does not present as a blank ECG. The clinical situation usually tells you <strong>which diagnosis you must confirm or urgently consider first</strong>. The skill to develop is moving deliberately between that first hypothesis, the available ECG evidence and alternative explanations.</p>
+<div class="hypothesis-note"><p><strong>Start with a question, not a checklist:</strong> “Given what is happening to this patient, what is the most dangerous plausible diagnosis that I need to identify now?”</p><p>Then ask: “What should the ECG show if I am right? What ECG finding would make another explanation more likely? What can the ECG <em>not</em> exclude?”</p></div>
 
-<h2 id="views">1. Understand what the ECG actually records</h2>
+<h2 id="method">1. From the bedside to the ECG</h2>
+<div class="clinical-frame" aria-label="Clinical-first ECG reasoning: recognize the situation, name a working diagnosis, predict signs, interrogate the ECG, then verify and reassess.">
+<div class="stage"><b>01</b><strong>Recognize</strong><span>What happened? What is the patient's perfusion and stability?</span></div>
+<div class="stage"><b>02</b><strong>Name</strong><span>State the leading time-critical diagnosis and one dangerous alternative.</span></div>
+<div class="stage"><b>03</b><strong>Predict</strong><span>Which specific ECG features should be present if that diagnosis is correct?</span></div>
+<div class="stage"><b>04</b><strong>Test</strong><span>Inspect the relevant leads, rhythm, intervals or pattern; compare with prior data.</span></div>
+<div class="stage"><b>05</b><strong>Decide &amp; revisit</strong><span>Act if needed, check other evidence and perform a systematic second pass.</span></div>
+</div>
+<p>These steps can take seconds in an emergency and much longer in a stable assessment. An unstable patient needs appropriate immediate treatment <strong>while</strong> the diagnostic question is being refined. The first hypothesis is a starting point, not a conclusion.</p>
+
+<h2 id="scenarios">2. Four clinical situations, four different questions</h2>
+<div class="case-grid">
+<section class="clinical-case" aria-labelledby="case-chest"><p class="scene">Emergency department</p><h3 id="case-chest">A patient with ongoing chest pain</h3>
+<dl><dt>First diagnosis to consider</dt><dd>Acute coronary syndrome, particularly an acute coronary occlusion requiring urgent reperfusion assessment.</dd>
+<dt>What to look for immediately</dt><dd>Obtain a 12-lead ECG promptly. Assess ST elevation or equivalent ischemic patterns, changes in anatomically related leads, reciprocal changes and dynamic evolution.</dd>
+<dt>What would change the plan?</dt><dd>Findings compatible with a time-critical occlusive event trigger the appropriate ACS pathway; a nondiagnostic tracing with ongoing suspicion calls for repeat ECGs and the rest of the diagnostic workup.</dd></dl>
+<p class="limits">Critical limitation: a normal or nondiagnostic first ECG does not exclude ACS. <a href="#ref4">[4]</a></p></section>
+
+<section class="clinical-case" aria-labelledby="case-collapse"><p class="scene">Sudden collapse / resuscitation</p><h3 id="case-collapse">A patient collapses and is unresponsive</h3>
+<dl><dt>First decision</dt><dd>Is this cardiac arrest? Assess responsiveness and breathing, and determine pulse status promptly according to resuscitation training; initiate CPR and the emergency response if indicated.</dd>
+<dt>What to look for immediately</dt><dd>Once a monitor/defibrillator is attached, distinguish a shockable rhythm (VF or pulseless VT) from a non-shockable rhythm (PEA or asystole).</dd>
+<dt>What would change the plan?</dt><dd>The rhythm category determines the arrest-management branch. Simultaneously search for reversible causes and reassess evidence of circulation.</dd></dl>
+<p class="limits">Critical limitation: organized electrical activity does not guarantee a pulse. Do not delay resuscitation to obtain a conventional 12-lead ECG. <a href="#ref5">[5]</a></p></section>
+
+<section class="clinical-case" aria-labelledby="case-clamp"><p class="scene">Cardiac operating room</p><h3 id="case-clamp">The aortic cross-clamp has just been removed</h3>
+<dl><dt>First diagnosis to consider</dt><dd>Failure of organized electrical and mechanical recovery after reperfusion: identify VF, severe bradyarrhythmia or conduction failure, and whether circulation is adequate on current support.</dd>
+<dt>What to look for immediately</dt><dd>Inspect the rhythm for organized complexes versus fibrillation, and the QRS for new widening or conduction changes; correlate with arterial pressure, myocardial activity, temperature and perfusion.</dd>
+<dt>What else must be checked?</dt><dd>Consider effects of recent cardioplegia, electrolyte disturbances (including potassium), coronary air, ischemia and the timing of myocardial recovery. The operative team uses direct observation, blood gases and echocardiography as appropriate.</dd></dl>
+<p class="limits">Critical limitation: the ECG does not, by itself, reveal why the myocardium has failed to recover. <a href="#ref6">[6]</a></p></section>
+
+<section class="clinical-case" aria-labelledby="case-bypass"><p class="scene">Cardiac operating room</p><h3 id="case-bypass">Difficulty separating from cardiopulmonary bypass</h3>
+<dl><dt>First diagnosis to consider</dt><dd>Ask whether the main problem is cardiac pump failure, ischemia, an unstable rhythm or another cause of inadequate circulation.</dd>
+<dt>What to look for immediately</dt><dd>Identify new rhythm or conduction abnormalities and evolving ST changes; compare with the pre-bypass ECG, if available.</dd>
+<dt>What else must be checked?</dt><dd>Use hemodynamics and transesophageal echocardiography to evaluate ventricular performance, regional wall motion and alternative causes such as loading conditions, vasoplegia or surgical complications. <a href="#ref6">[6]</a></dd></dl>
+<p class="limits">Critical limitation: a rhythm or ST abnormality is only one component of the multidisciplinary assessment.</p></section>
+</div>
+
+<p>Notice what changes across the cases: <strong>the first question</strong>. In chest pain it may be acute ischemia; in cardiac arrest it is the rhythm category and perfusion; after cross-clamp release it is electrical and mechanical recovery. The underlying ECG knowledge is the same, but different features deserve immediate attention.</p>
+
+<h2 id="tools">3. Know the ECG tools that test your hypothesis</h2>
+<p>Clinical-first does not mean skipping fundamentals. You need a rapid, accurate understanding of the tracing to make the first hypothesis testable. The following is a <em>toolbox</em>, not a compulsory order for every clinical situation.</p>
+<div class="comparison"><table><thead><tr><th>Clinical question</th><th>ECG feature to examine</th><th>Important limitation</th></tr></thead><tbody>
+<tr><td>Is the rhythm causing instability?</td><td>Rate, regularity, P waves, QRS morphology and pulse relationship.</td><td>Monitor rhythm alone does not establish perfusion.</td></tr>
+<tr><td>Could this be a conduction disturbance?</td><td>PR relationship, dropped ventricular complexes, QRS duration and escape rhythm.</td><td>Context, medication and reversible causes matter.</td></tr>
+<tr><td>Could this be myocardial ischemia?</td><td>ST-T changes across related leads, reciprocal patterns and serial evolution.</td><td>One ECG can be nondiagnostic; findings are not specific in isolation.</td></tr>
+<tr><td>Could technical factors explain the appearance?</td><td>Electrode placement, artifact, calibration, baseline and comparison tracings.</td><td>Correcting technique does not exclude true simultaneous pathology.</td></tr>
+</tbody></table></div>
+<h2 id="views">4. The 12-lead recording: a technical foundation</h2>
 <p>The standard resting 12-lead ECG uses <strong>10 surface electrodes</strong>: four limb electrodes and six precordial (chest) electrodes. Those electrical measurements are combined into <strong>12 leads</strong>, or views of cardiac electrical activity. An electrode is a physical sensor; a lead is a particular view derived from the recorded signals. <a href="#ref1">[1]</a></p>
 
 <div class="ecg-flow" role="img" aria-label="Original schematic: four limb electrodes plus six chest electrodes produce six frontal-plane leads and six precordial leads, for a total of twelve ECG leads.">
@@ -83,18 +132,15 @@
 </div>
 <p class="muted small">These are common standard settings, not guarantees. If the speed or gain differs, the appearance of intervals and amplitudes changes.</p>
 
-<h2 id="reading">2. Read in a consistent sequence</h2>
-<p>Instead of memorizing isolated patterns, ask a small number of repeatable questions. Each answer narrows the next question.</p>
+<h2 id="reading">5. A systematic second pass: protect against anchoring</h2>
+<p>Once the urgent clinical question has been addressed, take a deliberate second look for findings outside your first hypothesis. This matters particularly when the patient is stable enough for a complete recording or when the first diagnosis does not explain the physiology.</p>
+<div class="step"><strong>Rhythm</strong>Review atrial activity, regularity, ventricular rate, and atrioventricular relationships. Is a second arrhythmia present?</div>
+<div class="step"><strong>Conduction</strong>Check PR, QRS and QT/QTc in context. As rough adult reference points, the PR interval is usually around 120–200 ms and QRS duration of 120 ms or more is wide. Corrected QT values depend on measurement and correction method. <a href="#ref2">[2]</a></div>
+<div class="step"><strong>Orientation and morphology</strong>Review frontal axis, P-wave morphology, Q waves, progression of precordial R waves and abnormalities of ST segments and T waves in related leads.</div>
+<div class="step"><strong>Verification</strong>Check technical quality and previous tracings. Decide which findings remain unexplained and what additional information is needed.</div>
+<p>A complete read is valuable as a <strong>cognitive safety net</strong>, rather than as a requirement to delay a time-critical decision.</p>
 
-<div class="step"><strong>First: rate and rhythm</strong>Count the ventricular rate and examine the R–R intervals. Is the rhythm regular, irregularly irregular or patterned? Identify atrial activity: do P waves precede each QRS, and is the relationship consistent? A pulse rate and an electrical heart rate may not always match.</div>
-
-<div class="step"><strong>Next: orientation and conduction</strong>Estimate the frontal QRS axis, then inspect the PR interval, QRS duration and QT/QTc. As rough adult reference points, PR is usually about 120–200 ms and a QRS duration of 120 ms or more is considered wide. QT interpretation depends on heart rate, correction method, patient characteristics and the measurement itself. Avoid treating a computer-generated QTc as unquestionable. <a href="#ref2">[2]</a></div>
-
-<div class="step"><strong>Then: waveforms and repolarization</strong>Look across related leads for P-wave features, QRS morphology, abnormal Q waves, R-wave progression, ST-segment shifts and T-wave abnormalities. Describe <em>what is present</em> before naming a diagnosis; a single unusual wave is rarely the whole story.</div>
-
-<div class="step"><strong>Finally: the clinical context</strong>Compare with a prior ECG when available. Consider symptoms, vital signs, medication effects, electrolytes, relevant history and examination findings. Ask whether a repeat ECG, additional leads, monitoring or further assessment is warranted. An ECG is evidence, not a stand-alone diagnosis.</div>
-
-<h2 id="recording">3. A useful trap: recording settings can look like disease</h2>
+<h2 id="recording">6. A technical trap: display gain</h2>
 <p>A waveform may appear to shrink when voltage gain is reduced, even though the underlying measured signal is unchanged. This is why an unexpectedly low-amplitude tracing should prompt a calibration check alongside clinical assessment.</p>
 
 <figure class="ecg-diagram">
@@ -116,43 +162,51 @@
 <p>Half the plotted voltage deflection; timing unchanged.</p>
 </div>
 </div>
-<figcaption class="ecg-caption">Figure 2. Original teaching illustration, not a real patient ECG and not anatomically representative of individual waves. It shows the effect of gain on displayed amplitude only.</figcaption>
+<figcaption class="ecg-caption">Figure 2. The same schematic event at two gain settings: halving the gain halves the displayed voltage deflection.</figcaption>
 </figure>
 
-<h2 id="danger">4. Recognize findings that change urgency</h2>
-<p>A concerning ECG must be evaluated with the patient's condition. For example, <strong>syncope with marked bradycardia</strong>, <strong>high-grade or complete AV block</strong>, a dangerous tachyarrhythmia, or <strong>dynamic changes suggesting acute myocardial ischemia</strong> may require urgent assessment. Do not assume every bradycardia warrants pacing: the type of conduction disturbance, potential reversible causes and clinical context matter. <a href="#ref2">[2]</a></p>
+<h2 id="skill">7. Practise the reasoning, not only pattern recognition</h2>
+<p>To learn this skill, use a small exercise before looking at an ECG. It trains you to move from a clinical trigger to a testable question rather than retrospectively naming a pattern you already see.</p>
+<div class="skill-cycle">
+<ol>
+<li><strong>Read the clinical situation first.</strong> Identify the most urgent change in physiology, and whether immediate treatment is required.</li>
+<li><strong>Commit to one working diagnosis.</strong> Say it aloud. Also name an alternative that would require a different response.</li>
+<li><strong>Predict the ECG finding.</strong> Choose the lead group, interval or rhythm pattern that would support your hypothesis.</li>
+<li><strong>Look at the recording.</strong> Specify whether your prediction was supported, contradicted or left unresolved.</li>
+<li><strong>Check what the ECG cannot tell you.</strong> Identify the next source of evidence—exam, hemodynamics, echocardiography, laboratory results, serial ECGs—and revisit the hypothesis.</li>
+<li><strong>Finish with a second pass.</strong> Look for important abnormalities that did not belong to your first explanation.</li>
+</ol></div>
+<p>Crucially, an absent expected ECG sign is only useful as exclusion evidence when the test is sensitive enough in that setting. For example, absence of ST elevation alone does not exclude acute coronary syndrome. <a href="#ref3">[3]</a> <a href="#ref4">[4]</a></p>
 
-<p>In suspected acute coronary syndrome, guidelines emphasize prompt 12-lead recording and interpretation, with repeat ECGs when the first tracing is nondiagnostic or symptoms evolve. A normal-looking initial ECG does not rule out an acute coronary syndrome. These decisions belong to clinical protocols and qualified teams. <a href="#ref3">[3]</a> <a href="#ref4">[4]</a></p>
-
-<h2 id="practice">5. One-minute self-check</h2>
-<div class="ecg-selfcheck">
-<p><strong>Thought experiment:</strong> Two consecutive ECG printouts from the same stable patient show visibly different QRS heights. The displayed heart rate, QRS duration and waveform timing appear unchanged. On the first printout the calibration reads 10 mm/mV; on the second, 5 mm/mV. What is the first technical explanation to consider?</p>
-<details><summary>Reveal explanation</summary>
-<p>At 5 mm/mV, the <em>same measured voltage</em> occupies half the vertical distance on paper. Verify calibration before interpreting the apparent amplitude difference as a clinical change. This example does not exclude simultaneous real disease; it illustrates why recording conditions should be checked first.</p>
-</details>
-</div>
+<h2 id="practice">8. Try it: the first 15 seconds of reasoning</h2>
+<div class="clinical-question">
+<p><strong>Scenario:</strong> Immediately after aortic cross-clamp removal, the heart shows sluggish electrical recovery and the monitor shows broad ventricular complexes. You are still supported by the heart–lung machine.</p>
+<p>Before measuring every interval, answer three questions: (1) What time-critical problem must you clarify? (2) Which two mechanisms could explain it? (3) What evidence other than the ECG could distinguish them?</p>
+<details><summary>Compare with one possible reasoning pathway</summary>
+<p><strong>Working problem:</strong> Is there an unstable ventricular rhythm or a conduction/metabolic disturbance preventing effective recovery?</p>
+<p><strong>Competing explanations:</strong> the effects of potassium-containing cardioplegia or another electrolyte disturbance, myocardial ischemia or coronary air, among others.</p>
+<p><strong>Next evidence:</strong> identify the rhythm and QRS pattern while checking direct myocardial activity, perfusion and pressures; review blood gas/electrolyte information and transesophageal echo findings within the operative team. Treat time-critical instability according to the cardiac-surgery team's established protocols. <a href="#ref6">[6]</a></p>
+<p>This is not a diagnosis from one tracing. It is an example of making the first question explicit.</p>
+</details></div>
 
 <div class="ecg-takeaway">
-<h2>At the bedside, remember this sequence</h2>
+<h2>Five questions to take to the bedside</h2>
 <ol>
-<li><strong>Verify</strong> the recording and its calibration.</li>
-<li><strong>Describe</strong> the rate, rhythm, conduction and waveforms.</li>
-<li><strong>Compare</strong> related leads and previous ECGs.</li>
-<li><strong>Interpret</strong> the tracing in the patient's clinical context.</li>
-<li><strong>Act</strong> according to urgency and appropriate clinical guidance.</li>
+<li><strong>What changed in this patient?</strong></li>
+<li><strong>Which dangerous diagnosis is highest priority to identify?</strong></li>
+<li><strong>What ECG sign should I actively look for?</strong></li>
+<li><strong>What alternate diagnosis or missing finding changes my interpretation?</strong></li>
+<li><strong>What do I need to do or verify next?</strong></li>
 </ol>
 </div>
-
-<h2 id="limits">Scope and editorial status</h2>
-<p>This is a <strong>public working draft (v0.1)</strong> for undergraduate and early postgraduate education. It is intentionally introductory, is <strong>not yet independently peer reviewed</strong>, and does not replace formal ECG training, specialist interpretation or local emergency-care protocols. Thresholds and examples are primarily for adults. Future updates may add independently created case exercises, lead-placement diagrams and detailed AV block comparisons.</p>
-<p>Written independently for Jarev Academy from publicly available scientific literature. No institutional teaching questions, cases, slides, answer keys or graphics are used. <strong>Content reviewed for this draft:</strong> 28 October 2026.</p>
-
-<h2 id="references">Selected primary references</h2>
+<h2 id="references">References and clinical guidance</h2>
 <ol class="references">
 <li id="ref1">Kligfield P, et al. Recommendations for the standardization and interpretation of the electrocardiogram: Part I—the ECG and its technology. <em>Circulation</em>. 2007. <a href="https://doi.org/10.1161/CIRCULATIONAHA.106.180200" target="_blank" rel="noopener noreferrer">doi:10.1161/CIRCULATIONAHA.106.180200</a>.</li>
 <li id="ref2">Kusumoto FM, et al. 2018 ACC/AHA/HRS guideline on the evaluation and management of patients with bradycardia and cardiac conduction delay. <em>Circulation</em>. 2019. <a href="https://doi.org/10.1161/CIR.0000000000000628" target="_blank" rel="noopener noreferrer">doi:10.1161/CIR.0000000000000628</a>.</li>
 <li id="ref3">Byrne RA, et al. 2023 ESC Guidelines for the management of acute coronary syndromes. <em>European Heart Journal</em>. 2023. <a href="https://doi.org/10.1093/eurheartj/ehad191" target="_blank" rel="noopener noreferrer">doi:10.1093/eurheartj/ehad191</a>.</li>
 <li id="ref4">Rao SV, et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. <em>Journal of the American College of Cardiology</em>. 2025. <a href="https://doi.org/10.1016/j.jacc.2024.11.009" target="_blank" rel="noopener noreferrer">doi:10.1016/j.jacc.2024.11.009</a>.</li>
+<li id="ref5">American Heart Association. 2025 Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care, Part 9: Adult Advanced Life Support. <a href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support/" target="_blank" rel="noopener noreferrer">Read the guideline</a>.</li>
+<li id="ref6">EACTS/EACTAIC/EBCP. 2024 Guidelines on cardiopulmonary bypass in adult cardiac surgery, section on separation from CPB. <a href="https://academic.oup.com/ejcts/article/67/2/ezae354/8011475" target="_blank" rel="noopener noreferrer">Read the guideline</a>.</li>
 </ol>
 <a class="back" href="index.html">← Return to Jarev Academy</a>
 </article>
@@ -160,15 +214,17 @@
 <div class="card">
 <h2>On this page</h2>
 <ul>
-<li><a href="#views">What 12 leads mean</a></li>
-<li><a href="#reading">Reading sequence</a></li>
+<li><a href="#method">The clinical-first method</a></li>
+<li><a href="#scenarios">Four clinical situations</a></li>
+<li><a href="#tools">Targeted ECG tools</a></li>
+<li><a href="#views">The 12-lead recording</a></li>
+<li><a href="#reading">Systematic second pass</a></li>
 <li><a href="#recording">Calibration trap</a></li>
-<li><a href="#danger">Clinical urgency</a></li>
-<li><a href="#practice">Self-check</a></li>
-<li><a href="#limits">Scope</a></li>
+<li><a href="#skill">Training clinical reasoning</a></li>
+<li><a href="#practice">Exercise</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-<p class="muted small">Independent educational draft, not affiliated with or endorsed by any university or hospital.</p>
+<p class="muted small">Independent educational resource. Apply current clinical guidelines and local protocols.</p>
 </div>
 </aside>
 </div>
