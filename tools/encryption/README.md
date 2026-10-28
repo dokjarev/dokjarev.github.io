@@ -2,7 +2,7 @@
 
 **Public URL (when GitHub Pages has deployed):** https://jarev.nl/tools/encryption/
 
-A self-contained, general-purpose **text encryption/decryption demonstration** using native Web Crypto. This page and its source code have **no affiliation with any particular clinical or research system**.
+A self-contained, general-purpose **text encryption/decryption demonstration** using native Web Crypto. The page is independent of any specific service or organization.
 
 ## Usage
 
