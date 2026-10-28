@@ -6,6 +6,7 @@ Public educational section of [jarev.nl](https://jarev.nl/academy/).
 - `index.html`: Academy hub, topic tracks, and future media formats.
 - `peer-review.html`: Initial peer-review learning module, emphasizing Colombian Journal of Anesthesiology policies.
 - `cardiac-hemostasis.html`: Learning roadmap and primary guideline references for cardiac hemostasis.
+- `ecg-essentials.html`: Independent public working draft (v0.1) of ECG interpretation essentials; original figures, self-check and references.
 - `styles.css`: Shared Academy styling.
 
 ## Content model
