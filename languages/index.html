@@ -30,9 +30,8 @@
     .eyebrow { text-transform: uppercase; color: #087d80; letter-spacing: .1em; font-size: .79rem; font-weight: 800; margin: 0 0 8px; }
     .muted { color: #647986; font-size: .95rem; }
     .timeline-tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-    .timeline-tools input, .timeline-tools select { min-height: 42px; border: 1px solid #c8d8df; border-radius: 9px; background: white; padding: 8px 11px; font: inherit; color: inherit; }
-    .timeline-tools input { flex: 1 1 185px; min-width: 0; }
-    .timeline-tools select { flex: 1 1 165px; }
+    .timeline-tools select { min-height: 42px; border: 1px solid #c8d8df; border-radius: 9px; background: white; padding: 8px 11px; font: inherit; color: inherit; }
+    .timeline-tools select { flex: 1 1 165px; min-width: 0; }
     .timeline-viewport { max-height: 325px; overflow-y: auto; overscroll-behavior: contain; margin-top: 18px; padding-right: 10px; scrollbar-gutter: stable; }
     .timeline-hint { font-size: .84rem; margin: 8px 0 0; }
     .timeline { list-style: none; padding: 0 0 0 22px; margin: 0; border-left: 2px solid #d5e3e8; }
@@ -73,7 +72,16 @@
       <h2 id="log-heading">Language rotation timeline</h2>
       <p class="muted">A flexible record of my language-focused weeks.</p>
       <div class="timeline-tools">
-        <input id="language-search" type="search" placeholder="Search languages or dates…" aria-label="Search timeline">
+        <select id="language-filter" aria-label="Filter by language">
+          <option value="all">All languages</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Dutch">Dutch</option>
+          <option value="English">English</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+        </select>
         <select id="status-filter" aria-label="Filter by status">
           <option value="all">All statuses</option>
           <option value="completed">Completed</option>
@@ -228,7 +236,7 @@
   </main>
   <footer>Jarev · Personal language log</footer>
   <script>
-    const search = document.getElementById('language-search');
+    const languageFilter = document.getElementById('language-filter');
     const filter = document.getElementById('status-filter');
     const entries = Array.from(document.querySelectorAll('.timeline .entry'));
     const empty = document.getElementById('no-results');
@@ -274,19 +282,20 @@
     scrollToCurrentWeek();
 
     function applyFilters() {
-      const term = search.value.trim().toLocaleLowerCase();
+      const selectedLanguage = languageFilter.value;
       let visible = 0;
       for (const entry of entries) {
         const status = entry.classList.contains('completed') ? 'completed'
           : entry.classList.contains('current') ? 'current'
           : ['TBD', 'Not recorded'].includes(entry.querySelector('.status').textContent.trim()) ? 'tbd' : 'planned';
-        const matches = (filter.value === 'all' || status === filter.value) && entry.textContent.toLocaleLowerCase().includes(term);
+        const matches = (filter.value === 'all' || status === filter.value) && (selectedLanguage === 'all' || entry.querySelector('.language').textContent.trim() === selectedLanguage);
         entry.hidden = !matches;
         if (matches) visible++;
       }
       empty.hidden = visible !== 0;
+      document.querySelector('.timeline-viewport').scrollTop = 0;
     }
-    search.addEventListener('input', applyFilters);
+    languageFilter.addEventListener('change', applyFilters);
     filter.addEventListener('change', applyFilters);
   </script>
 </body>
